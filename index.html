@@ -1047,6 +1047,7 @@ function listHTML(p){
       ${ratingHTML(p)}
       ${p.verdict?`<div class="list-verdict">${p.verdict}</div>`:''}
       <div class="list-stores">${storeLinks(p)} ${oemLink(p)}</div>
+      <div class="card-notes"><textarea placeholder="Notes..." oninput="updateNotes('${p.id}',this.value)">${p.notes||''}</textarea></div>
     </div>
     <div class="list-price-col">
       <div class="list-price">$${bp?bp.toLocaleString('en-US'):'TBD'}</div>
