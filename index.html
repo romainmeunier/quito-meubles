@@ -100,6 +100,18 @@ select.sort-sel:hover{border-color:var(--border-s);color:var(--text)}
 .list-msrp s{margin-right:.3rem}
 .list-discount{font-size:.66rem;font-weight:600;color:var(--deal-text);background:var(--deal-bg);padding:.1rem .35rem;border-radius:4px}
 .list-color{font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--tag-text);background:var(--tag-bg);padding:.12rem .45rem;border-radius:50px;margin-top:.15rem;display:inline-block}
+/* Rating */
+.rating-wrap{display:flex;align-items:center;gap:.5rem;margin-top:.3rem}
+.rating-badge{display:inline-flex;align-items:center;justify-content:center;min-width:2.2rem;height:1.5rem;font-family:var(--f-m);font-size:.82rem;font-weight:600;border-radius:var(--rs);color:white;padding:0 .35rem}
+.rating-badge.r5{background:#2E7D32}.rating-badge.r4{background:#558B2F}.rating-badge.r3{background:#F9A825}.rating-badge.r2{background:#EF6C00}.rating-badge.r1{background:#C62828}
+.rating-subs{display:flex;gap:.6rem;font-size:.65rem;color:var(--text-mut)}
+.rating-subs span{white-space:nowrap}
+.rating-subs strong{color:var(--text-sec);font-weight:600}
+.rating-dots{display:inline-flex;gap:2px;margin-left:.15rem;vertical-align:middle}
+.rating-dots i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--border)}
+.rating-dots i.on{background:var(--accent)}
+.oem-link{display:inline-flex;align-items:center;gap:.2rem;font-size:.7rem;font-family:var(--f-m);color:var(--text-mut);text-decoration:none;padding:.15rem .4rem;border:1px solid var(--border);border-radius:var(--rs);transition:all .15s ease}
+.oem-link:hover{color:var(--accent);border-color:var(--accent)}
 .list-stores{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.3rem}
 .list-stores a{font-size:.7rem;color:var(--accent);text-decoration:none;padding:.15rem .45rem;border:1px solid var(--border);border-radius:4px;transition:all var(--t)}
 .list-stores a:hover{background:var(--accent-bg);border-color:var(--accent)}
@@ -166,11 +178,13 @@ const PRODUCTS = [
     id: 'whirlpool-quattro', category: 'kitchen', subcategory: 'Fridge',
     brand: 'Whirlpool', model: 'Quattro Style WRQ950', type: 'French Door 4-door', color: 'Grey Steel',
     image: 'https://www.artefacta.com/media/catalog/product/5/7/570061_01_88kx9eqtof6zgm8d_1.jpeg',
+    oem: 'https://www.whirlpool.com.ec/refrigeradoras-y-congeladores/refrigeradoras/french-door',
     specs: ['595 L', 'No Frost', 'French Door', 'Counter Depth', 'FlexiFreeze'],
     stores: [
       { name: 'Artefacta', price: 1219, link: 'https://www.artefacta.com/refrigeradora-whirlpool-quattro-style-french-door-21-ft3-121949/p' },
     ],
     msrp: 1599, selected: true,
+    rating: { value: 4.5, fit: 5, overall: 4.5 },
     verdict: 'TOP PICK — True 4-door French Door at $1,219. FlexiFreeze adjustable freezer (-7/-12/-18C), counter-depth fits flush. 24% off MSRP.',
     notes: '12 months interest-free at Artefacta.',
   },
@@ -178,6 +192,7 @@ const PRODUCTS = [
     id: 'elux-ib7b', category: 'kitchen', subcategory: 'Fridge',
     brand: 'Electrolux', model: 'IB7B', type: 'Bottom Freezer', color: 'Black Inox',
     image: 'https://electromegaecuador.com/5834-large_default/refrigeradora-electrolux-french-door-490-litros-digital-inverter-ib7b.jpg',
+    oem: 'https://www.electrolux.com.ec/refrigeracion/refrigeradoras/bottom-freezer',
     specs: ['490 L', 'Inverter', 'A+++', 'No Frost', 'AutoSense AI', 'TasteGuard'],
     stores: [
       { name: 'Electromega', price: 825, link: 'https://electromegaecuador.com/electrodomesticos/8488-refrigeradora-electrolux-french-door-490-litros-digital-inverter-ib7b.html' },
@@ -186,6 +201,7 @@ const PRODUCTS = [
       { name: 'MiBodega', price: null, link: 'https://mibodega.ec/brand/112-electrolux' },
     ],
     msrp: 1099, selected: false,
+    rating: { value: 5, fit: 4.5, overall: 4.5 },
     verdict: 'BEST VALUE — Swedish brand, A+++, 10yr motor warranty. AutoSense AI. Black inox. $825 cash saves $394 vs Whirlpool.',
     notes: 'Cash price at Electromega. 10yr motor warranty.',
   },
@@ -193,6 +209,7 @@ const PRODUCTS = [
     id: 'elux-erbb32', category: 'kitchen', subcategory: 'Fridge',
     brand: 'Electrolux', model: 'ERBB32N6HXB', type: 'Bottom Freezer', color: 'Black Glass',
     image: 'https://electromegaecuador.com/6319-large_default/refrigeradora-electrolux-french-door-322-litros-inverter-erbb32n6hxb.jpg',
+    oem: 'https://www.electrolux.com.ec/refrigeracion/refrigeradoras/bottom-freezer',
     specs: ['322 L', 'Inverter + AI', 'No Frost', 'Black Glass', '60cm wide'],
     stores: [
       { name: 'Yoper', price: 615, link: 'https://www.yoper.com.ec/heladeras/refrigeradora-electrolux-erbb32n6hxb-322-litros-bottom-freezer-autosense-color-negro/product?identifier=69862' },
@@ -201,6 +218,7 @@ const PRODUCTS = [
       { name: 'Sukasa', price: null, link: 'https://www.sukasa.com/productos/electrolux-refrigerador-b-f-vitro-inverter-negro-322l/6b370c4b-70bb-4a1b-b0a6-8c7c2505f6f9' },
     ],
     msrp: 849, selected: false,
+    rating: { value: 4, fit: 3, overall: 3 },
     verdict: 'BUDGET PICK — Elegant black glass door, only 60cm wide. Same AI tech. 322L is cozy for two if you batch-cook.',
     notes: 'Slimmest option. Great if kitchen is tight.',
   },
@@ -208,6 +226,7 @@ const PRODUCTS = [
     id: 'elux-im8b', category: 'kitchen', subcategory: 'Fridge',
     brand: 'Electrolux', model: 'IM8B', type: 'French Door', color: 'Black',
     image: 'https://web-pro-resources.s3.us-east-2.amazonaws.com/public/original-resources/product/9f7158e1-2bfd-4bab-bebe-ceda7de603b0/image/refrigerador-fd-587lt-negro-no-frost-inverteria.jpg',
+    oem: 'https://www.electrolux.com.ec/refrigerador-no-frost-french-door-electrolux-inverter-590-litros-negro-im8b/p',
     specs: ['587 L', 'Inverter + AI', 'French Door', 'No Frost', 'AutoSense', 'HortiNatura'],
     stores: [
       { name: 'Kissu', price: 1694, link: 'https://kissu.com.ec/producto.php?n=3480' },
@@ -215,6 +234,7 @@ const PRODUCTS = [
       { name: 'Electrolux EC', price: null, link: 'https://www.electrolux.com.ec/refrigerador-no-frost-french-door-electrolux-inverter-590-litros-negro-im8b/p' },
     ],
     msrp: 2100, selected: false,
+    rating: { value: 3.5, fit: 4, overall: 3.5 },
     verdict: 'EURO FRENCH DOOR — The ONLY French Door from a European brand in Ecuador. 587L, full AI. Over budget at $1,694 but the premium pick.',
     notes: 'Over $1,500 budget. European quality + French Door = unicorn in EC.',
   },
@@ -222,6 +242,7 @@ const PRODUCTS = [
     id: 'indurama-992-ne', category: 'kitchen', subcategory: 'Fridge',
     brand: 'Indurama', model: 'RI-992I NE', type: 'French Door', color: 'Black',
     image: 'https://mibodega.ec/79818-large_default/refrigeradora-indurama-ri992ne-674-lt-french-door.jpg',
+    oem: 'https://www.indurama.com/refrigeradora-french-door-ri-992i-ne/p',
     specs: ['676 L', 'Inverter', 'French Door', 'Ice+Water Dispenser', 'Digital Panel'],
     stores: [
       { name: 'MiBodega', price: 1585, link: 'https://mibodega.ec/todas-las-categorias/23941-refrigeradora-indurama-ri992ne-674-lt-french-door.html' },
@@ -229,6 +250,7 @@ const PRODUCTS = [
       { name: 'Etafashion', price: 1999, link: 'https://www.etafashion.com/es_EC/HOGAR/LINEA-BLANCA/REFRIGERADORAS/REFRIGERADORAS/Refrigeradora-French-Door-Indurama-RI-992I-NE---674-Lts-%7C-Negro/p/005000001006180001' },
     ],
     msrp: 1967, selected: false,
+    rating: { value: 3.5, fit: 3, overall: 3 },
     verdict: 'GO BIG — Massive 676L French Door, ice/water dispenser. Indurama = #1 local brand, easy service everywhere. Over budget.',
     notes: 'MiBodega has best price ($1,585 cash).',
   },
@@ -236,12 +258,14 @@ const PRODUCTS = [
     id: 'indurama-992-cr', category: 'kitchen', subcategory: 'Fridge',
     brand: 'Indurama', model: 'RI-992I CR', type: 'French Door', color: 'Chrome Grey',
     image: 'https://mibodega.ec/79818-large_default/refrigeradora-indurama-ri992ne-674-lt-french-door.jpg',
+    oem: 'https://www.indurama.com/refrigeradora-french-door-ri-992i-croma/p',
     specs: ['674 L', 'Inverter', 'French Door', 'Ice+Water Dispenser', 'Digital Panel'],
     stores: [
       { name: 'MiBodega', price: 1585, link: 'https://mibodega.ec/refrigeracion/23940-refrigeradora-indurama-french-door-ri992i-674-lt.html' },
       { name: 'Indurama.com', price: 1846, link: 'https://www.indurama.com/refrigeradora-french-door-ri-992i-croma/p' },
     ],
     msrp: 1846, selected: false,
+    rating: { value: 3.5, fit: 3, overall: 3 },
     verdict: 'GREY TWIN — Same as NE but chrome grey. $1,585 at MiBodega. Over budget but closest French Door to $1,500.',
     notes: 'Chrome/grey finish.',
   },
@@ -249,12 +273,14 @@ const PRODUCTS = [
     id: 'mabe-rmb520', category: 'kitchen', subcategory: 'Fridge',
     brand: 'Mabe', model: 'RMB520IBBQX0', type: 'Bottom Freezer', color: 'Inox Grey',
     image: 'https://www.artefacta.com/media/catalog/product/1/3/138389__1.jpg',
+    oem: 'https://mabeglobal.com/es_EC/Refrigeracion/Refrigeradores/Refrigerador-Bottom-Freezer-542-Lts-Brutos-Inox-Mabe---RMB520IBBQX0/p/RMB520IBBQX0',
     specs: ['520 L', 'No Frost', 'Touch Panel', 'Total Fresh Flow', '2L Water Tank'],
     stores: [
       { name: 'Artefacta', price: 989, link: 'https://www.artefacta.com/refrigeradora-mabe-rmb520ibbqx0-bottom-freezer-520-l-138389/p' },
       { name: 'Mabe EC', price: null, link: 'https://mabeglobal.com/es_EC/Refrigeracion/Refrigeradores/Refrigerador-Bottom-Freezer-542-Lts-Brutos-Inox-Mabe---RMB520IBBQX0/p/RMB520IBBQX0' },
     ],
     msrp: 1149, selected: false,
+    rating: { value: 3.5, fit: 3, overall: 3 },
     verdict: 'SOLID MID — 520L at $989 (down from $1,149). Touch panel, 2L water tank. Good value in grey inox.',
     notes: 'On sale at Artefacta. Financing up to 42 months.',
   },
@@ -262,6 +288,7 @@ const PRODUCTS = [
     id: 'whirlpool-wre57', category: 'kitchen', subcategory: 'Fridge',
     brand: 'Whirlpool', model: 'WRE57BKTWW', type: 'Bottom Freezer', color: 'Inox Grey',
     image: 'https://www.artefacta.com/media/catalog/product/c/4/c4e41a57-f2b0-4eb1-85f4-3f9fbbf40b50.jpg',
+    oem: 'https://www.whirlpool.com.ec/refrigerador-inverter-17-pies-bottom-mount-wre57bktww/p',
     specs: ['481 L', 'Xpert Inverter', 'No Frost', 'Touch Panel', 'Turbo Freezer', 'Antifingerprint'],
     stores: [
       { name: 'Boyaca', price: 917, link: 'https://www.boyaca.com/prod.php?id=101407&product=refrigeradora-443-litros-wre57bktww-whirlpool' },
@@ -272,6 +299,7 @@ const PRODUCTS = [
       { name: 'OrveHogar', price: null, link: 'https://www.orvehogar.com/refrigeradora-whirlpool-wre57bktww-17-515-litros-xpert-inverter-color-inox/p' },
     ],
     msrp: 1469, selected: false,
+    rating: { value: 4.5, fit: 3.5, overall: 4 },
     verdict: 'BIG BOTTOM FREEZER — 481L with Xpert Inverter, touch panel, turbo freezer. $917 at Boyaca = 38% off MSRP. 10yr compressor warranty.',
     notes: 'Boyaca has the best cash price. Also at Artefacta, DePrati, Kissu.',
   },
@@ -279,6 +307,7 @@ const PRODUCTS = [
     id: 'whirlpool-wre56', category: 'kitchen', subcategory: 'Fridge',
     brand: 'Whirlpool', model: 'WRE56CKTWW', type: 'Bottom Freezer', color: 'Inox Grey',
     image: 'https://www.artefacta.com/media/catalog/product/c/4/c4e41a57-f2b0-4eb1-85f4-3f9fbbf40b50.jpg',
+    oem: 'https://www.whirlpool.com.ec/refrigeradoras-y-congeladores/refrigeradoras',
     specs: ['449 L', 'Xpert Inverter', 'No Frost', 'Bottom Freezer', 'Antifingerprint'],
     stores: [
       { name: 'Comandato', price: 679, link: 'https://www.comandato.com/refrigeradora-whirlpool-bottom-mount-450-litros-wre56cktww/p' },
@@ -286,6 +315,7 @@ const PRODUCTS = [
       { name: 'LaGanga', price: null, link: 'https://laganga.com/refrigeradora-bottom-mount-whirlpool-449l-wre56cktww.html' },
     ],
     msrp: 899, selected: false,
+    rating: { value: 4, fit: 3, overall: 3 },
     verdict: 'CHEAPEST BOTTOM FREEZER — 449L at just $679 at Comandato. Xpert Inverter, 10yr compressor. No frills but solid.',
     notes: 'Entry-level bottom freezer. Good backup if going budget.',
   },
@@ -293,6 +323,7 @@ const PRODUCTS = [
     id: 'elux-erqu40', category: 'kitchen', subcategory: 'Fridge',
     brand: 'Electrolux', model: 'ERQU40E6HWS', type: 'Multi Door 4-door', color: 'Silver',
     image: 'https://electromegaecuador.com/8486-large_default/refrigeradora-electrolux-401-litros-multidoor-inverter-4-puertas-erqu40e6hws.jpg',
+    oem: 'https://www.electrolux.com.ec/refrigeracion/refrigeradoras/multi-door',
     specs: ['401 L', 'Inverter', 'Multi Door 4P', 'No Frost', 'AutoSense AI', 'Touch Panel'],
     stores: [
       { name: 'DePrati', price: 899, link: 'https://www.deprati.com.ec/es/electrolux/c/09444' },
@@ -301,6 +332,7 @@ const PRODUCTS = [
       { name: 'TVentas', price: null, link: 'https://www.tventas.com/refrigeradoras/66202-refrigeradora-multidoor-401-l-electrolux-erqu40e6hws-7909569447437.html' },
     ],
     msrp: 1200, selected: false,
+    rating: { value: 4.5, fit: 4, overall: 4 },
     verdict: 'EURO MULTI DOOR — European 4-door at $899! Same AI tech as IB7B. 401L is enough for two. French-Door-like layout at Bottom-Freezer price.',
     notes: 'Best European multi-door deal. DePrati has lowest price.',
   },
@@ -308,6 +340,7 @@ const PRODUCTS = [
     id: 'whirlpool-wrq551', category: 'kitchen', subcategory: 'Fridge',
     brand: 'Whirlpool', model: 'WRQ551SNJZ', type: 'French Door Quattro', color: 'Stainless Steel',
     image: 'https://electromegaecuador.com/8200-large_default/refrigeradora-whirlpool-french-door-4-puertas-593-litros-wrq551snjz.jpg',
+    oem: 'https://www.whirlpool.com.ec/refrigerador-xpert-inverter-21-pies-french-door-wrq551snjz/p',
     specs: ['593 L', 'Xpert Inverter', 'French Door 4P', 'Counter Depth', 'FlexiFreeze', 'FreshLock'],
     stores: [
       { name: 'Electromega', price: 1489, link: 'https://electromegaecuador.com/producto/refrigeradora-whirlpool-french-door-4-puertas-593-litros-wrq551snjz/' },
@@ -316,6 +349,7 @@ const PRODUCTS = [
       { name: 'Whirlpool EC', price: null, link: 'https://www.whirlpool.com.ec/refrigerador-xpert-inverter-21-pies-french-door-wrq551snjz/p' },
     ],
     msrp: 1595, selected: false,
+    rating: { value: 4, fit: 4, overall: 4 },
     verdict: 'QUATTRO V2 — Newer Quattro model. $1,489 at Electromega (cash). Counter depth, FlexiFreeze, FreshLock sensors. Just under budget.',
     notes: 'At $1,489 this is just within the $1,500 limit. Cash price at Electromega.',
   },
@@ -325,6 +359,7 @@ const PRODUCTS = [
     id: 'lg-wt19dvtm', category: 'laundry', subcategory: 'Washing Machine',
     brand: 'LG', model: 'WT19DVTM', type: 'Top Load 19kg', color: 'Grey',
     image: 'https://comandato.vteximg.com.br/arquivos/ids/236507/WT19DVTM.jpg',
+    oem: 'https://www.lg.com/ec/lavadoras-y-secadoras/lg-wt19dvtm',
     specs: ['19 kg', 'Smart Inverter', 'TurboDrum', 'Top Load', '10yr motor warranty'],
     stores: [
       { name: 'Comandato', price: 452, link: 'https://www.comandato.com/lavadora-automatica-lg-wt19dvtm-19-kg-smart-inverter/p' },
@@ -332,6 +367,7 @@ const PRODUCTS = [
       { name: 'DePrati', price: null, link: 'https://www.deprati.com.ec/lavadora-carga-superior-smart-inverter-lg-wt19dvtm-19-kg/p/995X20286781122' },
     ],
     msrp: 599, selected: false,
+    rating: { value: 5, fit: 4, overall: 4.5 },
     verdict: 'BEST PRICE — 19kg LG at just $452! Smart Inverter motor (10yr warranty), TurboDrum. Pair with a $524 dryer = $976 total.',
     notes: 'Comandato has the best price. Smart Inverter = quiet + efficient.',
   },
@@ -339,6 +375,7 @@ const PRODUCTS = [
     id: 'whirlpool-ww20bt', category: 'laundry', subcategory: 'Washing Machine',
     brand: 'Whirlpool', model: 'WW20BTAHLA', type: 'Top Load 20kg', color: 'Black',
     image: 'https://www.artefacta.com/media/catalog/product/1/3/133052_01_1.jpg',
+    oem: 'https://www.whirlpool.com.ec/lavadora-carga-superior-20kg-xpert-eco-negra-ww20btahla/p',
     specs: ['20 kg', 'Xpert Eco', 'Smart Action', 'Top Load', '11 cycles', '10yr motor'],
     stores: [
       { name: 'Artefacta', price: 559, link: 'https://www.artefacta.com/lavadora-whirlpool-ww0btahla-superior-0-kg-133052/p' },
@@ -346,6 +383,7 @@ const PRODUCTS = [
       { name: 'DePrati', price: null, link: 'https://www.deprati.com.ec/lavadora-carga-superior-xpert-eco-whirlpool-ww20btahla-20kg/p/995X20284520202' },
     ],
     msrp: 829, selected: false,
+    rating: { value: 4.5, fit: 5, overall: 4.5 },
     verdict: 'TOP PICK — 20kg BLACK Whirlpool at $559. Xpert Eco saves 45% water / 30% energy. Smart Action, pet hair cycle. 10yr motor.',
     notes: 'Black color matches our preference. Artefacta has the promo price.',
   },
@@ -353,6 +391,7 @@ const PRODUCTS = [
     id: 'whirlpool-ww20lb', category: 'laundry', subcategory: 'Washing Machine',
     brand: 'Whirlpool', model: 'WW20LBAHLA', type: 'Top Load 20kg', color: 'White',
     image: 'https://www.artefacta.com/media/catalog/product/1/4/140351_01_xekfsm2j6rpz0q3y_1.jpg',
+    oem: 'https://www.whirlpool.com.ec/lavadora-superior-20-kg-ww20lbahla/p',
     specs: ['20 kg', 'SmartLoad', 'Top Load', '8 cycles', 'Auto water detect'],
     stores: [
       { name: 'OrveHogar', price: 509, link: 'https://www.orvehogar.com/lavadora-automatica-whirlpool-ww20lbahla-20-kg-color-blanco/p' },
@@ -360,6 +399,7 @@ const PRODUCTS = [
       { name: 'Kissu', price: null, link: 'https://www.kissu.com.ec/producto.php?n=4179' },
     ],
     msrp: 667, selected: false,
+    rating: { value: 4, fit: 3, overall: 3.5 },
     verdict: 'BUDGET 20KG — Same 20kg as WW20BT but white and simpler. $509 at OrveHogar. SmartLoad auto-detects load size.',
     notes: 'White only. Good if color doesnt matter and you want 20kg cheap.',
   },
@@ -367,11 +407,13 @@ const PRODUCTS = [
     id: 'samsung-wf26', category: 'laundry', subcategory: 'Washing Machine',
     brand: 'Samsung', model: 'WF26DG8250AVAP', type: 'Front Load 26kg', color: 'Black',
     image: 'https://comandato.vteximg.com.br/arquivos/ids/237238/390.jpg',
+    oem: 'https://shop.samsung.com/latin/ecu/ec/shop/electrodomesticos/lavado/lavadoras.html',
     specs: ['26 kg', 'AI EcoBubble', 'Front Load', 'AI Wash', 'Super Speed 28min', 'Steam'],
     stores: [
       { name: 'Comandato', price: 819, link: 'https://www.comandato.com/lavadora-samsung-ai-ecobubble-negro-26kg-wf26dg8250avap/p' },
     ],
     msrp: 1100, selected: false,
+    rating: { value: 4, fit: 3.5, overall: 3.5 },
     verdict: 'FRONT LOAD PREMIUM — 26kg! AI EcoBubble, steam hygiene, 28-min Super Speed. At $819 it eats most of the laundry budget but it is a beast.',
     notes: 'Front load = better wash quality. 26kg is massive. Leaves ~$400 for dryer.',
   },
@@ -380,7 +422,8 @@ const PRODUCTS = [
   {
     id: 'samsung-dv22gas', category: 'laundry', subcategory: 'Dryer',
     brand: 'Samsung', model: 'DV22A3200PW/AP', type: 'Gas Dryer 22kg', color: 'White',
-    image: 'https://images.samsung.com/is/image/samsung/latin-dv22a3200pw-ap-front-white-thumb-537251959',
+    image: 'https://images.samsung.com/is/image/samsung/p6pim/latin/dv22a3200pw-ap/gallery/latin-dv3300a-22kg-white-dv22a3200pw-ap-537251959?$684_547_PNG$',
+    oem: 'https://www.samsung.com/latin/washers-and-dryers/dryers/dv3300a-22kg-white-dv22a3200pw-ap/',
     specs: ['22 kg', 'Gas', 'Sensor Dry', 'Front Load', 'Wrinkle Prevent'],
     stores: [
       { name: 'Comandato', price: 524, link: 'https://www.comandato.com/secadora-a-gas-samsung-blanco-22kg-dv22a3200pw-ap/p' },
@@ -389,6 +432,7 @@ const PRODUCTS = [
       { name: 'Alm. Japon', price: null, link: 'https://www.almacenesjapon.com/secadora-a-gas-samsung-dv22a3200pw-ap-p86351-22-kg-carga-superior-color-blanca/p' },
     ],
     msrp: 755, selected: false,
+    rating: { value: 5, fit: 3.5, overall: 4 },
     verdict: 'CHEAPEST DRYER — 22kg gas at $524 Comandato. Sensor Dry auto-adjusts time/temp. Pair with LG washer = $976 total combo.',
     notes: 'Gas dryer = cheaper to run. White only. Comandato price is exceptional.',
   },
@@ -396,11 +440,13 @@ const PRODUCTS = [
     id: 'samsung-dv24gas', category: 'laundry', subcategory: 'Dryer',
     brand: 'Samsung', model: 'DV24DG800PVAP', type: 'Gas Dryer 24kg', color: 'Black',
     image: 'https://comandato.vteximg.com.br/arquivos/ids/237138/299.jpg',
+    oem: 'https://www.samsung.com/latin/washers-and-dryers/dryers/',
     specs: ['24 kg', 'Gas', 'Sensor Dry', 'SmartThings', 'Front Load', 'Reversible door'],
     stores: [
       { name: 'Comandato', price: 730, link: 'https://www.comandato.com/secadora-a-gas-samsung-sensor-dry-black-24kg-dv24dg800pvap/p' },
     ],
     msrp: 950, selected: false,
+    rating: { value: 3.5, fit: 4.5, overall: 4 },
     verdict: 'BLACK GAS 24KG — Bigger, black, smart. Sensor Dry + SmartThings app control. $730 at Comandato.',
     notes: 'Black matches our color pref. Gas = cheaper running cost.',
   },
@@ -408,14 +454,164 @@ const PRODUCTS = [
     id: 'samsung-dv24elec', category: 'laundry', subcategory: 'Dryer',
     brand: 'Samsung', model: 'DVE24DG800VAP', type: 'Electric Dryer 24kg', color: 'Black',
     image: 'https://comandato.vteximg.com.br/arquivos/ids/237129/299.jpg',
+    oem: 'https://www.samsung.com/latin/washers-and-dryers/dryers/',
     specs: ['24 kg', 'Electric', 'Sensor Dry', 'SmartThings', 'Front Load', 'Reversible door'],
     stores: [
       { name: 'Comandato', price: 733, link: 'https://www.comandato.com/secadora-electrica-samsung-black-24kg-dve24dg800vap/p' },
       { name: 'LaGanga', price: 801, link: 'https://laganga.com/secadora-a-electrica-samsung-24kg-dve24dg800vap.html' },
     ],
     msrp: 950, selected: false,
+    rating: { value: 3.5, fit: 4.5, overall: 4 },
     verdict: 'BLACK ELECTRIC 24KG — Same as gas version but electric. $733 Comandato. Pick this if no gas hookup in laundry room.',
     notes: 'Electric = no gas line needed. Only $3 more than gas version.',
+  },
+
+  // ─── BEDROOM — Mattresses ───
+  {
+    id: 'colineal-heritage-king', category: 'bedroom', subcategory: 'Mattress',
+    brand: 'Colineal', model: 'Heritage King', type: 'Pocket Coil 5-Zone', color: 'Beige',
+    image: 'https://colineal.com/cdn/shop/files/COL60003HE410_1_d11041bb-b520-461f-a55a-d3a75843265b.jpg?v=1767935526&width=600',
+    oem: 'https://colineal.com/products/colchon-heritage-king-3-plz',
+    specs: ['King 200×200', '39 cm', 'Pocket Coil', '5 comfort zones', 'True Pillow Top', 'Foam Encasement', 'German Tech'],
+    stores: [
+      { name: 'Colineal', price: 1008, link: 'https://colineal.com/products/colchon-heritage-king-3-plz' },
+    ],
+    msrp: 1550, selected: false,
+    rating: { value: 4, fit: 5, overall: 4.5 },
+    verdict: 'TOP PICK KING — Premium 5-zone pocket coil, FIRM. Best motion isolation + firmness. German tech, 39cm thick. -35% at Colineal.',
+    notes: '',
+  },
+  {
+    id: 'colineal-milo-firm-king', category: 'bedroom', subcategory: 'Mattress',
+    brand: 'Colineal', model: 'Milo Firm King', type: 'Pocket Coil', color: 'White',
+    image: 'https://colineal.com/cdn/shop/files/7861223917857_5_1e30b86a-609c-40a0-b202-1b1b82f57833.jpg?v=1767967134&width=600',
+    oem: 'https://colineal.com/products/colchon-milo-firm-king-3-plz-confort-firme',
+    specs: ['King 200×200', '34 cm', 'Pocket Coil', 'Viroclean antibacterial', 'Foam Encasement', 'Bed-in-box'],
+    stores: [
+      { name: 'Colineal', price: 747, link: 'https://colineal.com/products/colchon-milo-firm-king-3-plz-confort-firme' },
+    ],
+    msrp: 1149, selected: false,
+    rating: { value: 4.5, fit: 5, overall: 5 },
+    verdict: 'BEST VALUE KING — Pocket coil FIRM at $747 (-35%). King = more room to move at night. Antiviral Viroclean fabric. Delivered in a box.',
+    notes: '',
+  },
+  {
+    id: 'colineal-milo-firm-queen', category: 'bedroom', subcategory: 'Mattress',
+    brand: 'Colineal', model: 'Milo Firm Queen', type: 'Pocket Coil', color: 'White',
+    image: 'https://colineal.com/cdn/shop/files/7861223917857_5_1e30b86a-609c-40a0-b202-1b1b82f57833.jpg?v=1767967134&width=600',
+    oem: 'https://colineal.com/products/colchon-milo-firm-queen-2-5-plz-confort-firme',
+    specs: ['Queen 160×200', '34 cm', 'Pocket Coil', 'Viroclean antibacterial', 'Foam Encasement', 'Bed-in-box'],
+    stores: [
+      { name: 'Colineal', price: 662, link: 'https://colineal.com/products/colchon-milo-firm-queen-2-5-plz-confort-firme' },
+    ],
+    msrp: 1019, selected: false,
+    rating: { value: 4.5, fit: 4.5, overall: 4.5 },
+    verdict: 'BEST VALUE QUEEN — Same Milo tech as King, $662 (-35%). Pick Queen if the bedroom is small.',
+    notes: '',
+  },
+  {
+    id: 'paraiso-pocket-coil-plus', category: 'bedroom', subcategory: 'Mattress',
+    brand: 'Paraiso', model: 'Pocket Coil Plus Queen', type: 'Pocket Coil', color: 'Grey',
+    image: 'https://colchonesparaiso.com.ec/wp-content/uploads/2024/01/19_Pocket-Coil.png',
+    oem: 'https://colchonesparaiso.com.ec/product/pocket-coil/',
+    specs: ['Queen 160×200', 'Pocket Coil', 'Medium firmness', 'Anti-mite', 'Non-Flip'],
+    stores: [
+      { name: 'Tia', price: 439, link: 'https://www.tia.com.ec/hogar/dormitorio/colchones-y-bases/paraiso' },
+      { name: 'Paraiso', price: null, link: 'https://colchonesparaiso.com.ec/product/pocket-coil/' },
+    ],
+    msrp: 579, selected: false,
+    rating: { value: 4.5, fit: 3.5, overall: 4 },
+    verdict: 'GOOD VALUE — Pocket coil at $439. Medium firmness = may not be firm enough for Monica. Test in store.',
+    notes: '',
+  },
+  {
+    id: 'paraiso-pocket-bamboo', category: 'bedroom', subcategory: 'Mattress',
+    brand: 'Paraiso', model: 'Pocket Bamboo', type: 'Pocket Coil Bamboo', color: 'White',
+    image: 'https://colchonesparaiso.com.ec/wp-content/uploads/2024/01/18_Pocket-Bamboo.png',
+    oem: 'https://colchonesparaiso.com.ec/product/pocket-bamboo/',
+    specs: ['Queen/King available', 'Pocket Coil', 'Bamboo fiber', 'HyperSoft Foam', 'Air Mesh', 'Non-Flip'],
+    stores: [
+      { name: 'Paraiso', price: null, link: 'https://colchonesparaiso.com.ec/product/pocket-bamboo/' },
+    ],
+    msrp: null, selected: false,
+    rating: { value: 4, fit: 4, overall: 4 },
+    verdict: 'PREMIUM PARAISO — Thermoregulating bamboo + pocket coil. Current promo -30% + free bamboo pillow. Call 1800-727-247 for price.',
+    notes: 'Call Paraiso for exact price with -30% promo',
+  },
+  {
+    id: 'simmons-beautyrest-king', category: 'bedroom', subcategory: 'Mattress',
+    brand: 'Simmons', model: 'Beautyrest Harmony King', type: 'Pocketed Coil', color: 'White',
+    image: 'https://simmonsec.vteximg.com.br/arquivos/ids/168014/harmony-soft-pt-6.jpg?v=639060100243600000',
+    oem: 'https://www.simmons.com.ec/colchones/colecciones/beautyrest-harmony',
+    specs: ['King 200×200', 'Pocketed Coil Series 700', 'GelTouch', 'Feran Ice cooling', 'Pillow Top'],
+    stores: [
+      { name: 'El Bosque', price: 767, link: 'https://www.bosque.com.ec/simmons' },
+    ],
+    msrp: 994, selected: false,
+    rating: { value: 4, fit: 4, overall: 4 },
+    verdict: 'INTERNATIONAL BRAND — Simmons = world reference in pocket springs. GelTouch cooling. Bosqueton promo ongoing (-50%). Test in store.',
+    notes: 'Bosqueton promo ongoing, price may vary',
+  },
+  {
+    id: 'chaide-pocket-queen', category: 'bedroom', subcategory: 'Mattress',
+    brand: 'Chaide', model: 'Pocket Queen', type: 'Pocket Coil', color: 'Grey',
+    image: 'https://chaideec.vteximg.com.br/arquivos/ids/166800/PocketHypersoft34ChaideColchon.jpg?v=638836163817530000',
+    oem: 'https://www.chaide.com/colchon-chaide-pocket/p',
+    specs: ['Queen 160×200', '30 cm', 'Pocket Coils', 'Foam Encasement', 'ProShield anti-allergy', '10-year warranty'],
+    stores: [
+      { name: 'Chaide', price: 261, link: 'https://www.chaide.com/colchon-chaide-pocket/p' },
+    ],
+    msrp: 358, selected: false,
+    rating: { value: 5, fit: 2.5, overall: 3 },
+    verdict: 'BUDGET — Cheapest pocket coil on the market at $261. BUT "soft" comfort only = not ideal for Monica who likes firm.',
+    notes: 'Soft comfort only — test in store',
+  },
+  {
+    id: 'chaide-restonic-excellence', category: 'bedroom', subcategory: 'Mattress',
+    brand: 'Chaide', model: 'Restonic Excellence King', type: 'Memory Foam', color: 'Grey',
+    image: 'https://chaideec.vteximg.com.br/arquivos/ids/166934/Excellence34ChaideColchon.jpg?v=638836164387430000',
+    oem: 'https://www.chaide.com/product/product?name=Colch%C3%B3n+Excellence',
+    specs: ['King 200×200', 'Memory Foam + HD Foam', 'Bamboo antibacterial', 'Non-Flip'],
+    stores: [
+      { name: 'Tempo Design', price: 584, link: 'https://www.tempodesign.com.ec/colchon-restonic-excellence-%7C-king-3-plazas/p' },
+      { name: 'Artefacta', price: null, link: 'https://www.artefacta.com/colchon-chaide-restonic-excellence-especial-950253/p' },
+      { name: 'El Bosque', price: null, link: 'https://www.bosque.com.ec/chaide' },
+    ],
+    msrp: 615, selected: false,
+    rating: { value: 4.5, fit: 3, overall: 3.5 },
+    verdict: 'FOAM ALTERNATIVE — King memory foam at $584. No pocket springs but good motion absorption. Intermediate firmness.',
+    notes: '',
+  },
+
+  // ─── BEDROOM — Bed Bases ───
+  {
+    id: 'colineal-sommier-genial', category: 'bedroom', subcategory: 'Bed Base',
+    brand: 'Colineal', model: 'Sommier Genial Queen', type: 'Wood Sommier', color: 'Honey',
+    image: 'https://colineal.com/cdn/shop/files/Gemini_Generated_Image_8wo3bi8wo3bi8wo3.png?v=1774883393&width=600',
+    oem: 'https://colineal.com/products/base-de-cama-sommier-genial',
+    specs: ['Queen 210×169×36 cm', 'Solid pine', 'Flex Tendido system', 'Urban style'],
+    stores: [
+      { name: 'Colineal', price: 299, link: 'https://colineal.com/products/base-de-cama-sommier-genial' },
+    ],
+    msrp: 499, selected: false,
+    rating: { value: 4.5, fit: 4, overall: 4 },
+    verdict: 'GOOD DEAL BASE — Solid pine at $299 (-40%). Simple and functional, keeps the budget for the mattress.',
+    notes: '',
+  },
+  {
+    id: 'chaide-base-tapiz', category: 'bedroom', subcategory: 'Bed Base',
+    brand: 'Chaide', model: 'Base Tapiz Queen', type: 'Upholstered Base', color: 'Chocolate',
+    image: 'https://chaideec.vteximg.com.br/arquivos/ids/173015/TapizChocolate34ChaideBasedeColchon.jpg?v=638850870958300000',
+    oem: 'https://www.chaide.com/base-chaide-tapiz/p',
+    specs: ['Queen 160×200', 'Non-slip fabric', 'Anti-mite', '1-year warranty'],
+    stores: [
+      { name: 'Chaide', price: null, link: 'https://www.chaide.com/base-chaide-tapiz/p' },
+      { name: 'Artefacta', price: null, link: 'https://www.artefacta.com/base-de-colchon-chaide-y-chaide-chaide200x20-queen-107828/p' },
+    ],
+    msrp: null, selected: false,
+    rating: { value: 4, fit: 4, overall: 4 },
+    verdict: 'BASIC BASE — Chaide upholstered base ~$150-250 estimated. Non-slip, simple. Confirm price in store.',
+    notes: 'Price not listed online — check in store',
   },
 ];
 </script>
@@ -504,6 +700,7 @@ function getFilteredItems(){
     case'discount':items.sort((a,b)=>discount(b)-discount(a));break;
     case'capacity':items.sort((a,b)=>{const cap=s=>{const m=s.specs.find(x=>/\d+\s*L/.test(x));return m?parseInt(m):0};return cap(b)-cap(a)});break;
     case'brand':items.sort((a,b)=>a.brand.localeCompare(b.brand)||bp(a)-bp(b));break;
+    case'rating':items.sort((a,b)=>(b.rating?.overall||0)-(a.rating?.overall||0)||bp(a)-bp(b));break;
   }
   return items;
 }
@@ -523,6 +720,7 @@ function renderToolbar(){
   html+=`<option value="discount"${sortBy==='discount'?' selected':''}>Biggest Discount</option>`;
   html+=`<option value="capacity"${sortBy==='capacity'?' selected':''}>Capacity: Largest</option>`;
   html+=`<option value="brand"${sortBy==='brand'?' selected':''}>Brand A&rarr;Z</option>`;
+  html+=`<option value="rating"${sortBy==='rating'?' selected':''}>Best Rated</option>`;
   html+=`</select></div>`;
   // Sep
   html+=`<div class="toolbar-sep"></div>`;
@@ -574,6 +772,19 @@ function render(){
 const chk=`<svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7.5L6 10.5L11 4"/></svg>`;
 const arrow=`<svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M11 1H5M11 1V7"/></svg>`;
 
+function ratingHTML(p){
+  if(!p.rating)return'';
+  const o=p.rating.overall||0;const v=p.rating.value||0;const f=p.rating.fit||0;
+  const cls=o>=4.5?'r5':o>=3.5?'r4':o>=2.5?'r3':o>=1.5?'r2':'r1';
+  const dots=(n,max=5)=>{let h='<span class="rating-dots">';for(let i=1;i<=max;i++)h+=`<i class="${i<=Math.round(n)?'on':''}"></i>`;return h+'</span>'};
+  return`<div class="rating-wrap"><span class="rating-badge ${cls}">${o.toFixed(1)}</span><div class="rating-subs"><span>Value <strong>${v}</strong>${dots(v)}</span><span>Fit <strong>${f}</strong>${dots(f)}</span></div></div>`
+}
+
+function oemLink(p){
+  if(!p.oem)return'';
+  return`<a href="${p.oem}" target="_blank" rel="noopener" class="oem-link" title="Fiche constructeur">&#9432; OEM</a>`
+}
+
 function storeLinks(p){
   const bp=bestPrice(p);
   return p.stores.map(s=>`<a href="${s.link}" target="_blank" rel="noopener" class="${s.price===bp?'best':''}">${s.name}${s.price?' $'+s.price.toLocaleString('en-US'):''} ${arrow}</a>`).join('')
@@ -587,8 +798,9 @@ function listHTML(p){
       <div class="list-brand">${p.brand} <span style="font-family:var(--f-b);font-size:.82rem;color:var(--text-sec);font-weight:400">${p.model}</span></div>
       <div class="list-type">${p.type} <span class="list-color">${p.color}</span></div>
       <div class="list-specs">${p.specs.map(s=>`<span class="tag">${s}</span>`).join('')}</div>
+      ${ratingHTML(p)}
       ${p.verdict?`<div class="list-verdict">${p.verdict}</div>`:''}
-      <div class="list-stores">${storeLinks(p)}</div>
+      <div class="list-stores">${storeLinks(p)} ${oemLink(p)}</div>
     </div>
     <div class="list-price-col">
       <div class="list-price">$${bp?bp.toLocaleString('en-US'):'TBD'}</div>
@@ -613,6 +825,7 @@ function cardHTML(p){
         <div class="card-brand">${p.brand}</div>
         <div class="card-model">${p.model}</div>
       </div><button class="list-sel" onclick="toggleSel('${p.id}')">${chk}</button></div>
+      ${ratingHTML(p)}
       ${p.verdict?`<div class="card-verdict">${p.verdict}</div>`:''}
       <div class="card-tags">${p.specs.map(s=>`<span class="tag">${s}</span>`).join('')}</div>
       <div class="card-bottom">
@@ -620,7 +833,7 @@ function cardHTML(p){
           <div class="card-price">$${bp?bp.toLocaleString('en-US'):'TBD'}</div>
           ${p.msrp&&bp?`<div class="card-msrp"><s>$${p.msrp.toLocaleString('en-US')}</s> <span class="list-discount">-${d}%</span></div>`:''}
         </div></div>
-        <div class="card-stores">${storeLinks(p)}</div>
+        <div class="card-stores">${storeLinks(p)} ${oemLink(p)}</div>
       </div>
       <div class="card-notes"><textarea placeholder="Notes..." oninput="updateNotes('${p.id}',this.value)">${p.notes||''}</textarea></div>
     </div>
