@@ -319,6 +319,104 @@ const PRODUCTS = [
     verdict: 'QUATTRO V2 — Newer Quattro model. $1,489 at Electromega (cash). Counter depth, FlexiFreeze, FreshLock sensors. Just under budget.',
     notes: 'At $1,489 this is just within the $1,500 limit. Cash price at Electromega.',
   },
+
+  // ═══════════ LAUNDRY — WASHING MACHINES ═══════════
+  {
+    id: 'lg-wt19dvtm', category: 'laundry', subcategory: 'Washing Machine',
+    brand: 'LG', model: 'WT19DVTM', type: 'Top Load 19kg', color: 'Grey',
+    image: 'https://comandato.vteximg.com.br/arquivos/ids/236507/WT19DVTM.jpg',
+    specs: ['19 kg', 'Smart Inverter', 'TurboDrum', 'Top Load', '10yr motor warranty'],
+    stores: [
+      { name: 'Comandato', price: 452, link: 'https://www.comandato.com/lavadora-automatica-lg-wt19dvtm-19-kg-smart-inverter/p' },
+      { name: 'MiBodega', price: 555, link: 'https://mibodega.ec/todas-las-categorias/25328-lavadora-lg-19kg-wt19wvtmcarga-superior.html' },
+      { name: 'DePrati', price: null, link: 'https://www.deprati.com.ec/lavadora-carga-superior-smart-inverter-lg-wt19dvtm-19-kg/p/995X20286781122' },
+    ],
+    msrp: 599, selected: false,
+    verdict: 'BEST PRICE — 19kg LG at just $452! Smart Inverter motor (10yr warranty), TurboDrum. Pair with a $524 dryer = $976 total.',
+    notes: 'Comandato has the best price. Smart Inverter = quiet + efficient.',
+  },
+  {
+    id: 'whirlpool-ww20bt', category: 'laundry', subcategory: 'Washing Machine',
+    brand: 'Whirlpool', model: 'WW20BTAHLA', type: 'Top Load 20kg', color: 'Black',
+    image: 'https://www.artefacta.com/media/catalog/product/1/3/133052_01_1.jpg',
+    specs: ['20 kg', 'Xpert Eco', 'Smart Action', 'Top Load', '11 cycles', '10yr motor'],
+    stores: [
+      { name: 'Artefacta', price: 559, link: 'https://www.artefacta.com/lavadora-whirlpool-ww0btahla-superior-0-kg-133052/p' },
+      { name: 'Whirlpool EC', price: 660, link: 'https://www.whirlpool.com.ec/lavadora-carga-superior-20kg-xpert-eco-negra-ww20btahla/p' },
+      { name: 'DePrati', price: null, link: 'https://www.deprati.com.ec/lavadora-carga-superior-xpert-eco-whirlpool-ww20btahla-20kg/p/995X20284520202' },
+    ],
+    msrp: 829, selected: false,
+    verdict: 'TOP PICK — 20kg BLACK Whirlpool at $559. Xpert Eco saves 45% water / 30% energy. Smart Action, pet hair cycle. 10yr motor.',
+    notes: 'Black color matches our preference. Artefacta has the promo price.',
+  },
+  {
+    id: 'whirlpool-ww20lb', category: 'laundry', subcategory: 'Washing Machine',
+    brand: 'Whirlpool', model: 'WW20LBAHLA', type: 'Top Load 20kg', color: 'White',
+    image: 'https://www.artefacta.com/media/catalog/product/1/4/140351_01_xekfsm2j6rpz0q3y_1.jpg',
+    specs: ['20 kg', 'SmartLoad', 'Top Load', '8 cycles', 'Auto water detect'],
+    stores: [
+      { name: 'OrveHogar', price: 509, link: 'https://www.orvehogar.com/lavadora-automatica-whirlpool-ww20lbahla-20-kg-color-blanco/p' },
+      { name: 'Artefacta', price: 519, link: 'https://www.artefacta.com/lavadora-whirlpool-ww0lbahla-superior-lbs-140351/p' },
+      { name: 'Kissu', price: null, link: 'https://www.kissu.com.ec/producto.php?n=4179' },
+    ],
+    msrp: 667, selected: false,
+    verdict: 'BUDGET 20KG — Same 20kg as WW20BT but white and simpler. $509 at OrveHogar. SmartLoad auto-detects load size.',
+    notes: 'White only. Good if color doesnt matter and you want 20kg cheap.',
+  },
+  {
+    id: 'samsung-wf26', category: 'laundry', subcategory: 'Washing Machine',
+    brand: 'Samsung', model: 'WF26DG8250AVAP', type: 'Front Load 26kg', color: 'Black',
+    image: 'https://comandato.vteximg.com.br/arquivos/ids/237238/390.jpg',
+    specs: ['26 kg', 'AI EcoBubble', 'Front Load', 'AI Wash', 'Super Speed 28min', 'Steam'],
+    stores: [
+      { name: 'Comandato', price: 819, link: 'https://www.comandato.com/lavadora-samsung-ai-ecobubble-negro-26kg-wf26dg8250avap/p' },
+    ],
+    msrp: 1100, selected: false,
+    verdict: 'FRONT LOAD PREMIUM — 26kg! AI EcoBubble, steam hygiene, 28-min Super Speed. At $819 it eats most of the laundry budget but it is a beast.',
+    notes: 'Front load = better wash quality. 26kg is massive. Leaves ~$400 for dryer.',
+  },
+
+  // ═══════════ LAUNDRY — DRYERS ═══════════
+  {
+    id: 'samsung-dv22gas', category: 'laundry', subcategory: 'Dryer',
+    brand: 'Samsung', model: 'DV22A3200PW/AP', type: 'Gas Dryer 22kg', color: 'White',
+    image: 'https://images.samsung.com/is/image/samsung/latin-dv22a3200pw-ap-front-white-thumb-537251959',
+    specs: ['22 kg', 'Gas', 'Sensor Dry', 'Front Load', 'Wrinkle Prevent'],
+    stores: [
+      { name: 'Comandato', price: 524, link: 'https://www.comandato.com/secadora-a-gas-samsung-blanco-22kg-dv22a3200pw-ap/p' },
+      { name: 'MiBodega', price: 755, link: 'https://mibodega.ec/todas-las-categorias/24005-secadora-samsung-22kg-dv22a3200pwapcarga-frontal.html' },
+      { name: 'Artefacta', price: null, link: 'https://www.artefacta.com/secadora-a-gas-samsung-dv22a3200pw-frontal-22-kg-132788/p' },
+      { name: 'Alm. Japon', price: null, link: 'https://www.almacenesjapon.com/secadora-a-gas-samsung-dv22a3200pw-ap-p86351-22-kg-carga-superior-color-blanca/p' },
+    ],
+    msrp: 755, selected: false,
+    verdict: 'CHEAPEST DRYER — 22kg gas at $524 Comandato. Sensor Dry auto-adjusts time/temp. Pair with LG washer = $976 total combo.',
+    notes: 'Gas dryer = cheaper to run. White only. Comandato price is exceptional.',
+  },
+  {
+    id: 'samsung-dv24gas', category: 'laundry', subcategory: 'Dryer',
+    brand: 'Samsung', model: 'DV24DG800PVAP', type: 'Gas Dryer 24kg', color: 'Black',
+    image: 'https://comandato.vteximg.com.br/arquivos/ids/237138/299.jpg',
+    specs: ['24 kg', 'Gas', 'Sensor Dry', 'SmartThings', 'Front Load', 'Reversible door'],
+    stores: [
+      { name: 'Comandato', price: 730, link: 'https://www.comandato.com/secadora-a-gas-samsung-sensor-dry-black-24kg-dv24dg800pvap/p' },
+    ],
+    msrp: 950, selected: false,
+    verdict: 'BLACK GAS 24KG — Bigger, black, smart. Sensor Dry + SmartThings app control. $730 at Comandato.',
+    notes: 'Black matches our color pref. Gas = cheaper running cost.',
+  },
+  {
+    id: 'samsung-dv24elec', category: 'laundry', subcategory: 'Dryer',
+    brand: 'Samsung', model: 'DVE24DG800VAP', type: 'Electric Dryer 24kg', color: 'Black',
+    image: 'https://comandato.vteximg.com.br/arquivos/ids/237129/299.jpg',
+    specs: ['24 kg', 'Electric', 'Sensor Dry', 'SmartThings', 'Front Load', 'Reversible door'],
+    stores: [
+      { name: 'Comandato', price: 733, link: 'https://www.comandato.com/secadora-electrica-samsung-black-24kg-dve24dg800vap/p' },
+      { name: 'LaGanga', price: 801, link: 'https://laganga.com/secadora-a-electrica-samsung-24kg-dve24dg800vap.html' },
+    ],
+    msrp: 950, selected: false,
+    verdict: 'BLACK ELECTRIC 24KG — Same as gas version but electric. $733 Comandato. Pick this if no gas hookup in laundry room.',
+    notes: 'Electric = no gas line needed. Only $3 more than gas version.',
+  },
 ];
 </script>
 
