@@ -112,6 +112,13 @@ select.sort-sel:hover{border-color:var(--border-s);color:var(--text)}
 .rating-dots i.on{background:var(--accent)}
 .oem-link{display:inline-flex;align-items:center;gap:.2rem;font-size:.7rem;font-family:var(--f-m);color:var(--text-mut);text-decoration:none;padding:.15rem .4rem;border:1px solid var(--border);border-radius:var(--rs);transition:all .15s ease}
 .oem-link:hover{color:var(--accent);border-color:var(--accent)}
+.sync-ind{font-size:.5rem;vertical-align:middle;margin-left:.3rem;transition:color .3s}
+.sync-ind.idle{color:var(--text-mut);opacity:.4}
+.sync-ind.saving{color:#F9A825;animation:pulse .6s infinite alternate}
+.sync-ind.saved{color:#2E7D32}
+.sync-ind.error{color:#C62828}
+.sync-ind.loading{color:#1565C0;animation:pulse .6s infinite alternate}
+@keyframes pulse{from{opacity:.3}to{opacity:1}}
 .list-stores{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.3rem}
 .list-stores a{font-size:.7rem;color:var(--accent);text-decoration:none;padding:.15rem .45rem;border:1px solid var(--border);border-radius:4px;transition:all var(--t)}
 .list-stores a:hover{background:var(--accent-bg);border-color:var(--accent)}
@@ -866,7 +873,7 @@ const PRODUCTS = [
 <div id="app" style="display:none">
 <div class="wrap header">
   <div class="header-top">
-    <div><h1 class="header-title">Romain & <em>Monica</em></h1><p class="header-sub">muebles — Quito apartment tracker</p></div>
+    <div><h1 class="header-title">Romain & <em>Monica</em></h1><p class="header-sub">muebles — Quito apartment tracker <span class="sync-ind idle" id="sync-ind" title="Sync status">&#9679;</span></p></div>
     <div class="controls">
       <button class="btn-sm" id="viewBtn" onclick="toggleView()"><span id="viewIcon">&#9776;</span> <span id="viewLbl">List</span></button>
       <button class="btn-sm" onclick="toggleTheme()"><span id="themeIcon">&#9790;</span> <span id="themeLbl">Dark</span></button>
@@ -1081,10 +1088,65 @@ function cardHTML(p){
 
 function toggleSel(id){const p=PRODUCTS.find(x=>x.id===id);if(p){p.selected=!p.selected;render();updateBudget();saveState()}}
 function updateNotes(id,v){const p=PRODUCTS.find(x=>x.id===id);if(p){p.notes=v;saveState()}}
-function saveState(){localStorage.setItem('quito-products',JSON.stringify(PRODUCTS.map(p=>({id:p.id,selected:p.selected,notes:p.notes}))))}
-function loadState(){try{(JSON.parse(localStorage.getItem('quito-products')||'[]')).forEach(s=>{const p=PRODUCTS.find(x=>x.id===s.id);if(p){p.selected=s.selected;if(s.notes!==undefined)p.notes=s.notes}})}catch(e){}}
+
+// ─── Shared state via jsonblob.com ───
+const BLOB_ID='019d3fac-5ae7-774a-87ff-dd529eec2230';
+const BLOB_URL=`https://jsonblob.com/api/jsonBlob/${BLOB_ID}`;
+let _saveTimer=null;
+let _syncing=false;
+
+function syncIndicator(state){
+  let el=document.getElementById('sync-ind');
+  if(!el)return;
+  el.className='sync-ind '+state;
+  el.title=state==='saving'?'Saving...':state==='saved'?'Synced':state==='error'?'Sync error — retrying':'Loading...';
+}
+
+function getStateObj(){
+  const o={};PRODUCTS.forEach(p=>{if(p.selected||p.notes)o[p.id]={s:p.selected||false,n:p.notes||''}});return o;
+}
+
+function applyStateObj(o){
+  if(!o||typeof o!=='object')return;
+  PRODUCTS.forEach(p=>{
+    if(o[p.id]){p.selected=!!o[p.id].s;p.notes=o[p.id].n||''}
+    else{p.selected=false;p.notes=''}
+  });
+}
+
+function saveState(){
+  // Save locally immediately
+  localStorage.setItem('quito-products',JSON.stringify(getStateObj()));
+  // Debounce remote save (800ms)
+  clearTimeout(_saveTimer);
+  _saveTimer=setTimeout(saveRemote,800);
+}
+
+async function saveRemote(){
+  if(_syncing)return;
+  _syncing=true;syncIndicator('saving');
+  try{
+    await fetch(BLOB_URL,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(getStateObj())});
+    syncIndicator('saved');setTimeout(()=>syncIndicator('idle'),2000);
+  }catch(e){syncIndicator('error');setTimeout(saveRemote,5000)}
+  _syncing=false;
+}
+
+async function loadState(){
+  // Load from localStorage first (instant)
+  try{const local=JSON.parse(localStorage.getItem('quito-products')||'{}');applyStateObj(local)}catch(e){}
+  // Then fetch remote (authoritative)
+  try{
+    syncIndicator('loading');
+    const r=await fetch(BLOB_URL);
+    if(r.ok){const data=await r.json();applyStateObj(data);localStorage.setItem('quito-products',JSON.stringify(data));render();updateBudget()}
+    syncIndicator('saved');setTimeout(()=>syncIndicator('idle'),2000);
+  }catch(e){syncIndicator('error')}
+}
 
 loadState();renderTabs();renderToolbar();render();updateBudget();
+// Poll remote every 30s for changes from other devices
+setInterval(async()=>{try{const r=await fetch(BLOB_URL);if(r.ok){const d=await r.json();const cur=JSON.stringify(getStateObj());if(JSON.stringify(d)!==cur){applyStateObj(d);localStorage.setItem('quito-products',JSON.stringify(d));render();updateBudget();syncIndicator('saved');setTimeout(()=>syncIndicator('idle'),2000)}}}catch(e){}},30000);
 </script>
 </body>
 </html>
