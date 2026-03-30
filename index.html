@@ -61,8 +61,22 @@ body{font-family:var(--f-b);background:var(--bg);color:var(--text);line-height:1
 .tab .ct{display:inline-flex;align-items:center;justify-content:center;min-width:1.2rem;height:1.2rem;font-size:.68rem;font-weight:600;border-radius:50px;margin-left:.3rem;padding:0 .3rem;background:var(--tag-bg);color:var(--tag-text);transition:all var(--t)}
 .tab.on .ct{background:rgba(255,255,255,.2);color:var(--bg)}
 
+/* Toolbar */
+.toolbar{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;padding:.6rem 0;margin-bottom:.5rem}
+.toolbar-group{display:flex;align-items:center;gap:.3rem}
+.toolbar-lbl{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-mut);margin-right:.15rem;white-space:nowrap}
+.chip{font-family:var(--f-b);font-size:.75rem;font-weight:500;padding:.3rem .65rem;border:1px solid var(--border);border-radius:50px;background:var(--bg-card);color:var(--text-sec);cursor:pointer;transition:all var(--t);white-space:nowrap;user-select:none}
+.chip:hover{border-color:var(--border-s);color:var(--text)}
+.chip.on{background:var(--text);color:var(--bg);border-color:var(--text)}
+.chip-accent.on{background:var(--accent);color:white;border-color:var(--accent)}
+.toolbar-sep{width:1px;height:1.2rem;background:var(--border);margin:0 .2rem}
+select.sort-sel{font-family:var(--f-b);font-size:.75rem;font-weight:500;padding:.3rem .6rem;border:1px solid var(--border);border-radius:var(--rs);background:var(--bg-card);color:var(--text-sec);cursor:pointer;transition:all var(--t);outline:none;-webkit-appearance:none;appearance:none;padding-right:1.4rem;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath d='M2 4l3 3 3-3' fill='none' stroke='%238A7D74' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .45rem center}
+select.sort-sel:hover{border-color:var(--border-s);color:var(--text)}
+.toolbar-count{font-size:.72rem;color:var(--text-mut);margin-left:auto;white-space:nowrap}
+.toolbar-count strong{color:var(--text-sec)}
+
 /* Content */
-.content{padding:1rem 0 4rem;min-height:40vh}
+.content{padding:0 0 4rem;min-height:40vh}
 .view-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
 .subcat-heading{font-family:var(--f-d);font-size:1.15rem;color:var(--text);margin:1.5rem 0 .7rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
 .subcat-heading:first-child{margin-top:0}
@@ -131,8 +145,8 @@ body{font-family:var(--f-b);background:var(--bg);color:var(--text);line-height:1
 .lock{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:opacity .4s ease,visibility .4s ease}.lock.hide{opacity:0;visibility:hidden;pointer-events:none}.lock-box{text-align:center;max-width:340px;padding:2rem}.lock h1{font-family:var(--f-d);font-size:2.2rem;margin-bottom:.2rem}.lock h1 em{font-style:italic;color:var(--accent)}.lock p{font-size:.85rem;color:var(--text-mut);margin-bottom:1.5rem}.lock form{display:flex;gap:.4rem}.lock input{flex:1;font-family:var(--f-b);font-size:.9rem;padding:.6rem .9rem;border:1px solid var(--border-s);border-radius:var(--rs);background:var(--bg-card);color:var(--text);outline:none;transition:border-color var(--t)}.lock input:focus{border-color:var(--accent)}.lock input.err{border-color:#c0392b;animation:shake .4s ease}.lock button{font-family:var(--f-b);font-size:.85rem;font-weight:600;padding:.6rem 1.2rem;border:none;border-radius:var(--rs);background:var(--accent);color:white;cursor:pointer;transition:background var(--t)}.lock button:hover{background:var(--accent-lt)}
 @keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-@media print{.lock,.tabs,.controls{display:none!important}.list-item,.card{break-inside:avoid;box-shadow:none;border:1px solid #ddd}body{background:white}}
-@media(max-width:720px){.wrap{padding:0 1rem}.card-grid{grid-template-columns:1fr}.header-title{font-size:1.8rem}.list-verdict{display:none}.list-specs{display:none}.list-thumb{width:50px;height:50px}.list-thumb img{max-width:44px;max-height:44px}}
+@media print{.lock,.tabs,.controls,.toolbar{display:none!important}.list-item,.card{break-inside:avoid;box-shadow:none;border:1px solid #ddd}body{background:white}}
+@media(max-width:720px){.wrap{padding:0 1rem}.card-grid{grid-template-columns:1fr}.header-title{font-size:1.8rem}.list-verdict{display:none}.list-specs{display:none}.list-thumb{width:50px;height:50px}.list-thumb img{max-width:44px;max-height:44px}.toolbar{gap:.35rem}.chip{font-size:.7rem;padding:.25rem .5rem}.toolbar-sep{display:none}}
 </style>
 </head>
 <body>
@@ -332,6 +346,7 @@ const PRODUCTS = [
   </div>
 </div>
 <div class="wrap tabs"><div class="tabs-row" id="tabs"></div></div>
+<div class="wrap"><div class="toolbar" id="toolbar"></div></div>
 <div class="wrap content" id="content"></div>
 </div>
 
@@ -346,6 +361,9 @@ if(localStorage.getItem('quito-auth')==='ok')unlock();
 
 <script>
 let tab='kitchen', view=localStorage.getItem('quito-view')||'list';
+let sortBy=localStorage.getItem('quito-sort')||'price-asc';
+let filters={types:new Set(),brands:new Set(),budgetOnly:false,selectedOnly:false};
+try{const sf=JSON.parse(localStorage.getItem('quito-filters')||'{}');if(sf.types)filters.types=new Set(sf.types);if(sf.brands)filters.brands=new Set(sf.brands);if(sf.budgetOnly)filters.budgetOnly=sf.budgetOnly;if(sf.selectedOnly)filters.selectedOnly=sf.selectedOnly}catch(e){}
 
 // Theme
 function setTheme(d){document.documentElement.setAttribute('data-theme',d?'dark':'light');document.getElementById('themeIcon').innerHTML=d?'&#9788;':'&#9790;';document.getElementById('themeLbl').textContent=d?'Light':'Dark';localStorage.setItem('quito-theme',d?'dark':'light')}
@@ -364,21 +382,91 @@ function discount(p){const bp=bestPrice(p);return bp&&p.msrp?Math.round((1-bp/p.
 
 // Tabs
 function renderTabs(){document.getElementById('tabs').innerHTML=CATEGORIES.map(c=>{const n=PRODUCTS.filter(p=>p.category===c.id).length;return`<button class="tab${tab===c.id?' on':''}" onclick="switchTab('${c.id}')">${c.label}${n?`<span class="ct">${n}</span>`:''}</button>`}).join('')}
-function switchTab(id){tab=id;renderTabs();render()}
+function switchTab(id){tab=id;renderTabs();renderToolbar();render()}
 
 // Budget
 function updateBudget(){const sel=PRODUCTS.filter(p=>p.selected);const tot=sel.reduce((s,p)=>s+(bestPrice(p)||0),0);const n=sel.length;document.getElementById('budgetAmt').innerHTML=`<span>$ </span>${tot.toLocaleString('en-US')}`;document.getElementById('budgetBar').style.width=Math.min(tot/Math.max(tot*1.3,5000)*100,100)+'%';const cats={};sel.forEach(p=>{const c=CATEGORIES.find(x=>x.id===p.category);if(!cats[p.category])cats[p.category]={l:c?c.label:p.category,t:0};cats[p.category].t+=(bestPrice(p)||0)});document.getElementById('budgetDet').innerHTML=`<span><strong>${n}</strong> item${n!==1?'s':''}</span>`+Object.values(cats).map(c=>`<span>${c.l}: <strong>$${c.t.toLocaleString('en-US')}</strong></span>`).join('')}
 
+// Save filters
+function saveFilters(){localStorage.setItem('quito-sort',sortBy);localStorage.setItem('quito-filters',JSON.stringify({types:[...filters.types],brands:[...filters.brands],budgetOnly:filters.budgetOnly,selectedOnly:filters.selectedOnly}))}
+
+// Sort/filter helpers
+function getFilteredItems(){
+  let items=PRODUCTS.filter(p=>p.category===tab);
+  if(filters.types.size)items=items.filter(p=>{const t=p.type.toLowerCase();return[...filters.types].some(f=>t.includes(f))});
+  if(filters.brands.size)items=items.filter(p=>filters.brands.has(p.brand));
+  if(filters.budgetOnly)items=items.filter(p=>{const bp=bestPrice(p);return bp&&bp<=MAX_BUDGET});
+  if(filters.selectedOnly)items=items.filter(p=>p.selected);
+  // Sort
+  items=[...items];
+  const bp=p=>bestPrice(p)||99999;
+  switch(sortBy){
+    case'price-asc':items.sort((a,b)=>bp(a)-bp(b));break;
+    case'price-desc':items.sort((a,b)=>bp(b)-bp(a));break;
+    case'discount':items.sort((a,b)=>discount(b)-discount(a));break;
+    case'capacity':items.sort((a,b)=>{const cap=s=>{const m=s.specs.find(x=>/\d+\s*L/.test(x));return m?parseInt(m):0};return cap(b)-cap(a)});break;
+    case'brand':items.sort((a,b)=>a.brand.localeCompare(b.brand)||bp(a)-bp(b));break;
+  }
+  return items;
+}
+
+// Toolbar
+function renderToolbar(){
+  const catItems=PRODUCTS.filter(p=>p.category===tab);
+  if(!catItems.length){document.getElementById('toolbar').innerHTML='';return}
+  // Extract unique types and brands from current category
+  const types=new Map();catItems.forEach(p=>{const t=p.type.toLowerCase();if(t.includes('french door'))types.set('french door','French Door');else if(t.includes('multi door'))types.set('multi door','Multi Door');else if(t.includes('bottom freezer'))types.set('bottom freezer','Bottom Freezer');else types.set(t,p.type)});
+  const brands=[...new Set(catItems.map(p=>p.brand))].sort();
+  let html='';
+  // Sort
+  html+=`<div class="toolbar-group"><span class="toolbar-lbl">Sort</span><select class="sort-sel" onchange="setSort(this.value)">`;
+  html+=`<option value="price-asc"${sortBy==='price-asc'?' selected':''}>Price: Low &rarr; High</option>`;
+  html+=`<option value="price-desc"${sortBy==='price-desc'?' selected':''}>Price: High &rarr; Low</option>`;
+  html+=`<option value="discount"${sortBy==='discount'?' selected':''}>Biggest Discount</option>`;
+  html+=`<option value="capacity"${sortBy==='capacity'?' selected':''}>Capacity: Largest</option>`;
+  html+=`<option value="brand"${sortBy==='brand'?' selected':''}>Brand A&rarr;Z</option>`;
+  html+=`</select></div>`;
+  // Sep
+  html+=`<div class="toolbar-sep"></div>`;
+  // Type filters
+  if(types.size>1){
+    html+=`<div class="toolbar-group"><span class="toolbar-lbl">Type</span>`;
+    types.forEach((label,key)=>{html+=`<button class="chip${filters.types.has(key)?' on':''}" onclick="toggleFilter('types','${key}')">${label}</button>`});
+    html+=`</div><div class="toolbar-sep"></div>`;
+  }
+  // Brand filters
+  if(brands.length>1){
+    html+=`<div class="toolbar-group"><span class="toolbar-lbl">Brand</span>`;
+    brands.forEach(b=>{html+=`<button class="chip${filters.brands.has(b)?' on':''}" onclick="toggleFilter('brands','${b}')">${b}</button>`});
+    html+=`</div><div class="toolbar-sep"></div>`;
+  }
+  // Quick filters
+  html+=`<div class="toolbar-group">`;
+  html+=`<button class="chip chip-accent${filters.budgetOnly?' on':''}" onclick="toggleQuickFilter('budgetOnly')">&le; $${MAX_BUDGET.toLocaleString('en-US')}</button>`;
+  html+=`<button class="chip chip-accent${filters.selectedOnly?' on':''}" onclick="toggleQuickFilter('selectedOnly')">Selected</button>`;
+  html+=`</div>`;
+  // Count
+  const filtered=getFilteredItems();
+  html+=`<span class="toolbar-count"><strong>${filtered.length}</strong> / ${catItems.length}</span>`;
+  document.getElementById('toolbar').innerHTML=html;
+}
+
+function setSort(v){sortBy=v;saveFilters();render();renderToolbar()}
+function toggleFilter(group,val){if(filters[group].has(val))filters[group].delete(val);else filters[group].add(val);saveFilters();render();renderToolbar()}
+function toggleQuickFilter(key){filters[key]=!filters[key];saveFilters();render();renderToolbar()}
+
 // Render
 function render(){
   const el=document.getElementById('content');
-  const items=PRODUCTS.filter(p=>p.category===tab);
-  if(!items.length){const c=CATEGORIES.find(x=>x.id===tab);const h={kitchen:'Cooktop, air fryer, microwave...',office:'Desks, ergonomic chairs, monitors...',bedroom:'Bed, mattress, nightstands...',living:'Sofa, coffee table, shelves...',laundry:'Washing machine, drying rack...'};el.innerHTML=`<div class="empty"><div class="empty-icon">+</div><div class="empty-title">Nothing yet in ${c?c.label:''}</div><p class="empty-text">${h[tab]||''}</p></div>`;return}
-  // Group by subcategory
-  const groups={};items.forEach(p=>{(groups[p.subcategory]=groups[p.subcategory]||[]).push(p)});
+  const catItems=PRODUCTS.filter(p=>p.category===tab);
+  if(!catItems.length){const c=CATEGORIES.find(x=>x.id===tab);const h={kitchen:'Cooktop, air fryer, microwave...',office:'Desks, ergonomic chairs, monitors...',bedroom:'Bed, mattress, nightstands...',living:'Sofa, coffee table, shelves...',laundry:'Washing machine, drying rack...'};el.innerHTML=`<div class="empty"><div class="empty-icon">+</div><div class="empty-title">Nothing yet in ${c?c.label:''}</div><p class="empty-text">${h[tab]||''}</p></div>`;return}
+  const items=getFilteredItems();
+  if(!items.length){el.innerHTML=`<div class="empty"><div class="empty-icon">&#9676;</div><div class="empty-title">No matches</div><p class="empty-text">Try adjusting your filters</p></div>`;return}
+  // Group by subcategory (preserve sort order within groups)
+  const groups=new Map();items.forEach(p=>{if(!groups.has(p.subcategory))groups.set(p.subcategory,[]);groups.get(p.subcategory).push(p)});
   let html='';
-  for(const[sub,prods]of Object.entries(groups)){
-    html+=`<div class="subcat-heading">${sub}</div>`;
+  for(const[sub,prods]of groups){
+    if(groups.size>1)html+=`<div class="subcat-heading">${sub}</div>`;
     if(view==='list'){html+=prods.map(listHTML).join('')}
     else{html+=`<div class="card-grid">${prods.map(cardHTML).join('')}</div>`}
   }
@@ -446,7 +534,7 @@ function updateNotes(id,v){const p=PRODUCTS.find(x=>x.id===id);if(p){p.notes=v;s
 function saveState(){localStorage.setItem('quito-products',JSON.stringify(PRODUCTS.map(p=>({id:p.id,selected:p.selected,notes:p.notes}))))}
 function loadState(){try{(JSON.parse(localStorage.getItem('quito-products')||'[]')).forEach(s=>{const p=PRODUCTS.find(x=>x.id===s.id);if(p){p.selected=s.selected;if(s.notes!==undefined)p.notes=s.notes}})}catch(e){}}
 
-loadState();renderTabs();render();updateBudget();
+loadState();renderTabs();renderToolbar();render();updateBudget();
 </script>
 </body>
 </html>
