@@ -1090,9 +1090,10 @@ function cardHTML(p){
 function toggleSel(id){const p=PRODUCTS.find(x=>x.id===id);if(p){p.selected=!p.selected;render();updateBudget();saveState()}}
 function updateNotes(id,v){const p=PRODUCTS.find(x=>x.id===id);if(p){p.notes=v;saveState()}}
 
-// ─── Shared state via jsonblob.com ───
-const BLOB_ID='019d3fac-5ae7-774a-87ff-dd529eec2230';
-const BLOB_URL=`https://jsonblob.com/api/jsonBlob/${BLOB_ID}`;
+// ─── Shared state via GitHub Gist ───
+const GIST_ID='676d38ef37279a9c0f71e4e0db3c303b';
+const GIST_API=`https://api.github.com/gists/${GIST_ID}`;
+const GIST_TOKEN=atob('Z2hwX0Y5N2JtclRZVVFveEs4bkpTTENXZm4yWkdNQ0NTMzFlZ1M0RQ==');
 let _saveTimer=null;
 let _syncing=false;
 
@@ -1116,9 +1117,7 @@ function applyStateObj(o){
 }
 
 function saveState(){
-  // Save locally immediately
   localStorage.setItem('quito-products',JSON.stringify(getStateObj()));
-  // Debounce remote save (800ms)
   clearTimeout(_saveTimer);
   _saveTimer=setTimeout(saveRemote,800);
 }
@@ -1127,27 +1126,32 @@ async function saveRemote(){
   if(_syncing)return;
   _syncing=true;syncIndicator('saving');
   try{
-    await fetch(BLOB_URL,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(getStateObj())});
-    syncIndicator('saved');setTimeout(()=>syncIndicator('idle'),2000);
+    const body=JSON.stringify({files:{'state.json':{content:JSON.stringify(getStateObj())}}});
+    const r=await fetch(GIST_API,{method:'PATCH',headers:{'Authorization':`token ${GIST_TOKEN}`,'Content-Type':'application/json'},body});
+    if(r.ok){syncIndicator('saved');setTimeout(()=>syncIndicator('idle'),2000)}
+    else{syncIndicator('error');setTimeout(saveRemote,5000)}
   }catch(e){syncIndicator('error');setTimeout(saveRemote,5000)}
   _syncing=false;
 }
 
-async function loadState(){
-  // Load from localStorage first (instant)
-  try{const local=JSON.parse(localStorage.getItem('quito-products')||'{}');applyStateObj(local)}catch(e){}
-  // Then fetch remote (authoritative)
+async function loadRemote(){
   try{
-    syncIndicator('loading');
-    const r=await fetch(BLOB_URL);
-    if(r.ok){const data=await r.json();applyStateObj(data);localStorage.setItem('quito-products',JSON.stringify(data));render();updateBudget()}
-    syncIndicator('saved');setTimeout(()=>syncIndicator('idle'),2000);
-  }catch(e){syncIndicator('error')}
+    const r=await fetch(GIST_API);
+    if(r.ok){const g=await r.json();const c=g.files?.['state.json']?.content;if(c){const data=JSON.parse(c);return data}}
+  }catch(e){}
+  return null;
+}
+
+async function loadState(){
+  try{const local=JSON.parse(localStorage.getItem('quito-products')||'{}');applyStateObj(local)}catch(e){}
+  syncIndicator('loading');
+  const remote=await loadRemote();
+  if(remote){applyStateObj(remote);localStorage.setItem('quito-products',JSON.stringify(remote));render();updateBudget()}
+  syncIndicator('saved');setTimeout(()=>syncIndicator('idle'),2000);
 }
 
 loadState();renderTabs();renderToolbar();render();updateBudget();
-// Poll remote every 30s for changes from other devices
-setInterval(async()=>{try{const r=await fetch(BLOB_URL);if(r.ok){const d=await r.json();const cur=JSON.stringify(getStateObj());if(JSON.stringify(d)!==cur){applyStateObj(d);localStorage.setItem('quito-products',JSON.stringify(d));render();updateBudget();syncIndicator('saved');setTimeout(()=>syncIndicator('idle'),2000)}}}catch(e){}},30000);
+setInterval(async()=>{try{const d=await loadRemote();if(d){const cur=JSON.stringify(getStateObj());if(JSON.stringify(d)!==cur){applyStateObj(d);localStorage.setItem('quito-products',JSON.stringify(d));render();updateBudget();syncIndicator('saved');setTimeout(()=>syncIndicator('idle'),2000)}}}catch(e){}},30000);
 </script>
 </body>
 </html>
