@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ameublement Quito</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #F5F0EB;
+  --bg-card: #FFFFFF;
+  --bg-card-selected: #FFF9F4;
+  --bg-hover: #FAF6F1;
+  --text: #2C2420;
+  --text-secondary: #8A7D74;
+  --text-muted: #B5AAA0;
+  --accent: #C4613A;
+  --accent-light: #E8845E;
+  --accent-bg: #FDF0EA;
+  --accent-bg-hover: #FADDD0;
+  --border: #E5DDD5;
+  --border-strong: #D4C9BE;
+  --selected-border: #C4613A;
+  --selected-bg: #FDF0EA;
+  --badge-bg: #C4613A;
+  --badge-text: #FFFFFF;
+  --tag-bg: #EDE7E0;
+  --tag-text: #6B5E54;
+  --shadow-sm: 0 1px 3px rgba(44,36,32,0.04);
+  --shadow-md: 0 4px 16px rgba(44,36,32,0.06);
+  --shadow-lg: 0 8px 32px rgba(44,36,32,0.08);
+  --shadow-card: 0 1px 4px rgba(44,36,32,0.03), 0 4px 16px rgba(44,36,32,0.04);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-xs: 6px;
+  --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-display: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+  --budget-bar: #C4613A;
+  --budget-bar-bg: #EDE7E0;
+  --empty-icon: #D4C9BE;
+}
+
+[data-theme="dark"] {
+  --bg: #1A1614;
+  --bg-card: #252120;
+  --bg-card-selected: #2E2521;
+  --bg-hover: #2E2926;
+  --text: #F0E8E0;
+  --text-secondary: #9E928A;
+  --text-muted: #6B5F57;
+  --accent: #E8845E;
+  --accent-light: #F0A080;
+  --accent-bg: #3A2820;
+  --accent-bg-hover: #4A3228;
+  --border: #3A3430;
+  --border-strong: #4A433E;
+  --selected-border: #E8845E;
+  --selected-bg: #3A2820;
+  --badge-bg: #E8845E;
+  --badge-text: #1A1614;
+  --tag-bg: #3A3430;
+  --tag-text: #B5A89E;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.2);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.3);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.4);
+  --shadow-card: 0 1px 4px rgba(0,0,0,0.15), 0 4px 16px rgba(0,0,0,0.2);
+  --budget-bar: #E8845E;
+  --budget-bar-bg: #3A3430;
+  --empty-icon: #4A433E;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Header ── */
+.header {
+  padding: 2.5rem 2rem 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.header-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  color: var(--text);
+}
+
+.header-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.header-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-top: 0.4rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.theme-toggle {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  padding: 0.5rem 0.9rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  transition: all var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+}
+
+.theme-toggle:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+}
+
+.theme-toggle-icon { font-size: 1rem; }
+
+/* ── Budget Bar ── */
+.budget-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem 1.5rem;
+}
+
+.budget-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.8rem;
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition);
+}
+
+.budget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1rem;
+}
+
+.budget-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+}
+
+.budget-amount {
+  font-family: var(--font-mono);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.budget-amount span { color: var(--text-muted); font-weight: 400; font-size: 1rem; }
+
+.budget-bar-track {
+  width: 100%;
+  height: 8px;
+  background: var(--budget-bar-bg);
+  border-radius: 50px;
+  overflow: hidden;
+  position: relative;
+}
+
+.budget-bar-fill {
+  height: 100%;
+  background: var(--budget-bar);
+  border-radius: 50px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 0;
+}
+
+.budget-details {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.budget-detail {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.budget-detail strong {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+/* ── Tabs ── */
+.tabs-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+  transition: background var(--transition);
+}
+
+.tabs-row {
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 2px;
+}
+
+.tabs-row::-webkit-scrollbar { display: none; }
+
+.tab-btn {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  padding: 0.55rem 1.2rem;
+  border: 1px solid transparent;
+  border-radius: 50px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition);
+  position: relative;
+}
+
+.tab-btn:hover {
+  color: var(--text);
+  background: var(--bg-hover);
+}
+
+.tab-btn.active {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+
+.tab-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.3rem;
+  height: 1.3rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  border-radius: 50px;
+  margin-left: 0.35rem;
+  padding: 0 0.35rem;
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  transition: all var(--transition);
+}
+
+.tab-btn.active .tab-count {
+  background: rgba(255,255,255,0.2);
+  color: var(--bg);
+}
+
+/* ── Content area ── */
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem 4rem;
+  min-height: 50vh;
+}
+
+/* ── Product Grid ── */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.2rem;
+  animation: fadeUp 0.35s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Product Card ── */
+.product-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-strong);
+}
+
+.product-card.selected {
+  border-color: var(--selected-border);
+  background: var(--bg-card-selected);
+  box-shadow: var(--shadow-md), 0 0 0 1px var(--selected-border);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.8rem;
+}
+
+.card-subcategory {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 0.25rem;
+}
+
+.card-brand {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+.card-model {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 0.15rem;
+  font-weight: 400;
+}
+
+.card-select-btn {
+  flex-shrink: 0;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  border: 2px solid var(--border-strong);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+  color: transparent;
+  font-size: 0.9rem;
+}
+
+.card-select-btn:hover {
+  border-color: var(--accent);
+  background: var(--accent-bg);
+}
+
+.product-card.selected .card-select-btn {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: white;
+}
+
+.card-specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.8rem 0;
+}
+
+.spec-tag {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.25rem 0.65rem;
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  border-radius: 50px;
+  letter-spacing: 0.01em;
+  transition: all var(--transition);
+}
+
+.product-card.selected .spec-tag {
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.card-price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.card-price {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.card-price-currency {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.card-store {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-align: right;
+}
+
+.card-store a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-xs);
+  transition: all var(--transition);
+  border: 1px solid transparent;
+}
+
+.card-store a:hover {
+  background: var(--accent-bg);
+  border-color: var(--accent);
+}
+
+.card-store a svg {
+  width: 12px;
+  height: 12px;
+  transition: transform var(--transition);
+}
+
+.card-store a:hover svg { transform: translate(2px, -2px); }
+
+.card-notes {
+  margin-top: 0.8rem;
+  padding-top: 0.8rem;
+  border-top: 1px dashed var(--border);
+}
+
+.card-notes textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  resize: vertical;
+  min-height: 2.4rem;
+  line-height: 1.5;
+  outline: none;
+  transition: color var(--transition);
+}
+
+.card-notes textarea::placeholder { color: var(--text-muted); }
+.card-notes textarea:focus { color: var(--text); }
+
+/* ── Empty State ── */
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  animation: fadeUp 0.35s ease;
+}
+
+.empty-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1.2rem;
+  border-radius: 50%;
+  background: var(--tag-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: var(--empty-icon);
+}
+
+.empty-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--text);
+  margin-bottom: 0.4rem;
+}
+
+.empty-text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+/* ── Lock Screen ── */
+.lock-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.lock-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.lock-box {
+  text-align: center;
+  max-width: 360px;
+  padding: 2rem;
+}
+
+.lock-title {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  color: var(--text);
+  margin-bottom: 0.3rem;
+}
+
+.lock-title em { font-style: italic; color: var(--accent); }
+
+.lock-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+.lock-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.lock-input {
+  flex: 1;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  color: var(--text);
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+.lock-input:focus { border-color: var(--accent); }
+
+.lock-input.error {
+  border-color: #c0392b;
+  animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+.lock-btn {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.7rem 1.4rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: white;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.lock-btn:hover { background: var(--accent-light); }
+
+/* ── Print ── */
+@media print {
+  .lock-screen { display: none !important; }
+  .theme-toggle, .tabs-section { display: none; }
+  .product-card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+  .header { padding-top: 0; }
+  body { background: white; }
+  .budget-card { box-shadow: none; border: 1px solid #ddd; }
+}
+
+/* ── Responsive ── */
+@media (max-width: 720px) {
+  .header { padding: 1.5rem 1rem 0; }
+  .budget-section, .content { padding-left: 1rem; padding-right: 1rem; }
+  .tabs-section { padding-left: 1rem; padding-right: 1rem; }
+  .product-grid { grid-template-columns: 1fr; }
+  .header-title { font-size: 2rem; }
+  .budget-card { padding: 1.2rem; }
+}
+</style>
+</head>
+<body>
+<script>
+// ═══════════════════════════════════════════════════════
+// DATA — Modifier ici pour ajouter/modifier des produits
+// ═══════════════════════════════════════════════════════
+const CATEGORIES = [
+  { id: 'cuisine', label: 'Cuisine', icon: '&#9678;' },
+  { id: 'bureau', label: 'Bureau', icon: '&#9678;' },
+  { id: 'chambre', label: 'Chambre', icon: '&#9678;' },
+  { id: 'salon', label: 'Salon', icon: '&#9678;' },
+  { id: 'buanderie', label: 'Buanderie', icon: '&#9678;' },
+];
+
+const PRODUCTS = [
+  {
+    id: 'elux-ib7b',
+    category: 'cuisine',
+    subcategory: 'Réfrigérateur',
+    brand: 'Electrolux',
+    model: 'IB7B',
+    type: 'Bottom Freezer No Frost',
+    specs: ['490 L', 'Inverter', 'A++', '189.5 × 69.9 × 74.9 cm'],
+    price: 825,
+    store: 'Electromega Ecuador',
+    link: 'https://electromegaecuador.com/electrodomesticos/8488-refrigeradora-electrolux-french-door-490-litros-digital-inverter-ib7b.html',
+    selected: true,
+    notes: 'Marque suédoise, garantie 10 ans moteur',
+  },
+  {
+    id: 'indurama-ri992i',
+    category: 'cuisine',
+    subcategory: 'Réfrigérateur',
+    brand: 'Indurama',
+    model: 'RI-992I CR',
+    type: 'French Door',
+    specs: ['674 L', 'Inverter', '91 × 73 × 179 cm', 'Dispenseur eau/glace'],
+    price: 1499,
+    store: 'Electromega Ecuador',
+    link: 'https://electromegaecuador.com/electrodomesticos/8312-refrigeradora-indurama-french-door-674-litros-inverter-ri-992i-cr.html',
+    selected: false,
+    notes: 'Alternative French Door, hors budget',
+  },
+  // ── Ajouter les prochains produits ici ──
+  // {
+  //   id: 'example',
+  //   category: 'cuisine',
+  //   subcategory: 'Plaque de cuisson',
+  //   brand: 'Samsung',
+  //   model: 'NZ64H57479K',
+  //   type: 'Induction 4 zones',
+  //   specs: ['7.2 kW', '60 cm', 'Touch'],
+  //   price: 580,
+  //   store: 'Artefacta',
+  //   link: 'https://...',
+  //   selected: false,
+  //   notes: '',
+  // },
+];
+
+// ═══════════════════════════════════════════════════════
+</script>
+
+<!-- Lock Screen -->
+<div class="lock-screen" id="lockScreen">
+  <div class="lock-box">
+    <h1 class="lock-title">Ameublement <em>Quito</em></h1>
+    <p class="lock-subtitle">Acc&egrave;s prot&eacute;g&eacute;</p>
+    <form class="lock-form" onsubmit="return handleUnlock(event)">
+      <input class="lock-input" id="lockInput" type="password" placeholder="Mot de passe" autocomplete="off" autofocus>
+      <button class="lock-btn" type="submit">Entrer</button>
+    </form>
+  </div>
+</div>
+
+<!-- App (hidden until unlocked) -->
+<div id="appContainer" style="display:none">
+<div class="header">
+  <div class="header-top">
+    <div>
+      <h1 class="header-title">Ameublement <em>Quito</em></h1>
+      <p class="header-subtitle">Suivi des achats &middot; appartement non meublé</p>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Basculer le thème">
+      <span class="theme-toggle-icon" id="themeIcon">&#9790;</span>
+      <span id="themeLabel">Sombre</span>
+    </button>
+  </div>
+</div>
+
+<div class="budget-section">
+  <div class="budget-card">
+    <div class="budget-header">
+      <span class="budget-label">Budget sélectionné</span>
+      <span class="budget-amount" id="budgetAmount">$0</span>
+    </div>
+    <div class="budget-bar-track">
+      <div class="budget-bar-fill" id="budgetBar" style="width: 0%"></div>
+    </div>
+    <div class="budget-details" id="budgetDetails"></div>
+  </div>
+</div>
+
+<div class="tabs-section">
+  <div class="tabs-row" id="tabsRow"></div>
+</div>
+
+<div class="content" id="content"></div>
+</div><!-- /appContainer -->
+
+<script>
+// ── Auth ──
+const HASH = 'd0611ff42c36f3a73082720e7160ac8d901c72e5396dcdf5b8428e79f07c8268';
+
+async function sha256(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+function unlock() {
+  document.getElementById('lockScreen').classList.add('hidden');
+  document.getElementById('appContainer').style.display = '';
+  localStorage.setItem('quito-auth', 'ok');
+}
+
+async function handleUnlock(e) {
+  e.preventDefault();
+  const input = document.getElementById('lockInput');
+  const hash = await sha256(input.value);
+  if (hash === HASH) {
+    unlock();
+  } else {
+    input.classList.add('error');
+    input.value = '';
+    setTimeout(() => input.classList.remove('error'), 500);
+  }
+  return false;
+}
+
+if (localStorage.getItem('quito-auth') === 'ok') unlock();
+</script>
+
+<script>
+// ── State ──
+let activeTab = 'cuisine';
+let savedTheme = localStorage.getItem('quito-theme');
+
+// ── Theme ──
+function setTheme(dark) {
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+  document.getElementById('themeIcon').innerHTML = dark ? '&#9788;' : '&#9790;';
+  document.getElementById('themeLabel').textContent = dark ? 'Clair' : 'Sombre';
+  localStorage.setItem('quito-theme', dark ? 'dark' : 'light');
+}
+
+function toggleTheme() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  setTheme(!isDark);
+}
+
+if (savedTheme === 'dark') setTheme(true);
+else if (savedTheme === 'light') setTheme(false);
+else if (window.matchMedia('(prefers-color-scheme: dark)').matches) setTheme(true);
+
+// ── Tabs ──
+function renderTabs() {
+  const row = document.getElementById('tabsRow');
+  row.innerHTML = CATEGORIES.map(cat => {
+    const count = PRODUCTS.filter(p => p.category === cat.id).length;
+    const isActive = activeTab === cat.id;
+    return `<button class="tab-btn ${isActive ? 'active' : ''}" onclick="switchTab('${cat.id}')">
+      ${cat.label}${count > 0 ? `<span class="tab-count">${count}</span>` : ''}
+    </button>`;
+  }).join('');
+}
+
+function switchTab(id) {
+  activeTab = id;
+  renderTabs();
+  renderContent();
+}
+
+// ── Budget ──
+function updateBudget() {
+  const selected = PRODUCTS.filter(p => p.selected);
+  const total = selected.reduce((s, p) => s + p.price, 0);
+  const count = selected.length;
+
+  document.getElementById('budgetAmount').innerHTML =
+    `<span>$</span>${total.toLocaleString('fr-FR')}`;
+
+  // Bar: scale relative to a reasonable estimate, or max 10000
+  const maxBudget = Math.max(total * 1.5, 5000);
+  const pct = Math.min((total / maxBudget) * 100, 100);
+  document.getElementById('budgetBar').style.width = pct + '%';
+
+  const details = document.getElementById('budgetDetails');
+  const catBreakdown = {};
+  selected.forEach(p => {
+    const cat = CATEGORIES.find(c => c.id === p.category);
+    if (!catBreakdown[p.category]) catBreakdown[p.category] = { label: cat ? cat.label : p.category, total: 0 };
+    catBreakdown[p.category].total += p.price;
+  });
+
+  details.innerHTML =
+    `<span class="budget-detail"><strong>${count}</strong> article${count > 1 ? 's' : ''} sélectionné${count > 1 ? 's' : ''}</span>` +
+    Object.values(catBreakdown).map(c =>
+      `<span class="budget-detail">${c.label}: <strong>$${c.total.toLocaleString('fr-FR')}</strong></span>`
+    ).join('');
+}
+
+// ── Cards ──
+function renderContent() {
+  const container = document.getElementById('content');
+  const items = PRODUCTS.filter(p => p.category === activeTab);
+
+  if (items.length === 0) {
+    const cat = CATEGORIES.find(c => c.id === activeTab);
+    const hints = {
+      cuisine: 'Plaque de cuisson, micro-ondes, ustensiles...',
+      bureau: '2 bureaux remote, chaises ergonomiques, écrans...',
+      chambre: 'Lit, matelas, tables de chevet, rangement...',
+      salon: 'Canapé, table basse, étagères, éclairage...',
+      buanderie: 'Lave-linge, étendoir, rangement...',
+    };
+    container.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">+</div>
+        <div class="empty-title">Rien encore en ${cat ? cat.label : ''}</div>
+        <p class="empty-text">${hints[activeTab] || 'Les produits recherchés apparaîtront ici.'}</p>
+      </div>`;
+    return;
+  }
+
+  container.innerHTML = `<div class="product-grid">${items.map(cardHTML).join('')}</div>`;
+}
+
+function cardHTML(p) {
+  const arrow = `<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M11 1H4M11 1V8"/></svg>`;
+  const check = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7.5L6 10.5L11 4"/></svg>`;
+
+  return `
+    <div class="product-card ${p.selected ? 'selected' : ''}" data-id="${p.id}">
+      <div class="card-top">
+        <div>
+          <div class="card-subcategory">${p.subcategory} &middot; ${p.type}</div>
+          <div class="card-brand">${p.brand}</div>
+          <div class="card-model">${p.model}</div>
+        </div>
+        <button class="card-select-btn" onclick="toggleSelect('${p.id}')" title="${p.selected ? 'Retirer' : 'Sélectionner'}">${check}</button>
+      </div>
+      <div class="card-specs">
+        ${p.specs.map(s => `<span class="spec-tag">${s}</span>`).join('')}
+      </div>
+      <div class="card-price-row">
+        <div class="card-price"><span class="card-price-currency">$ </span>${p.price.toLocaleString('fr-FR')}</div>
+        <div class="card-store">
+          <a href="${p.link}" target="_blank" rel="noopener">${p.store} ${arrow}</a>
+        </div>
+      </div>
+      <div class="card-notes">
+        <textarea placeholder="Notes..." oninput="updateNotes('${p.id}', this.value)">${p.notes || ''}</textarea>
+      </div>
+    </div>`;
+}
+
+function toggleSelect(id) {
+  const p = PRODUCTS.find(x => x.id === id);
+  if (p) {
+    p.selected = !p.selected;
+    renderContent();
+    updateBudget();
+    saveState();
+  }
+}
+
+function updateNotes(id, val) {
+  const p = PRODUCTS.find(x => x.id === id);
+  if (p) {
+    p.notes = val;
+    saveState();
+  }
+}
+
+// ── Persistence (localStorage) ──
+function saveState() {
+  const state = PRODUCTS.map(p => ({ id: p.id, selected: p.selected, notes: p.notes }));
+  localStorage.setItem('quito-products', JSON.stringify(state));
+}
+
+function loadState() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('quito-products') || '[]');
+    saved.forEach(s => {
+      const p = PRODUCTS.find(x => x.id === s.id);
+      if (p) {
+        p.selected = s.selected;
+        if (s.notes !== undefined) p.notes = s.notes;
+      }
+    });
+  } catch(e) {}
+}
+
+// ── Init ──
+loadState();
+renderTabs();
+renderContent();
+updateBudget();
+</script>
+</body>
+</html>
