@@ -2028,26 +2028,25 @@ function renderStoreView(el){
   const stores=storeFilter?new Map([[storeFilter,allStores.get(storeFilter)||[]]]):allStores;
   let html='';
   for(const[storeName,products]of stores){
-    // Group products by category within each store
-    const byCat=new Map();
+    // Group products by subcategory within each store
+    const bySub=new Map();
     products.forEach(p=>{
-      const cat=CATEGORIES.find(c=>c.id===p.category);
-      const label=cat?cat.label:p.category;
-      if(!byCat.has(label))byCat.set(label,[]);
-      byCat.get(label).push(p);
+      const key=p.subcategory||'Other';
+      if(!bySub.has(key))bySub.set(key,[]);
+      bySub.get(key).push(p);
     });
     // Find best link for this store (first product's link for that store)
     const firstLink=products[0].stores.find(s=>s.name===storeName)?.link||'';
     const domain=firstLink?new URL(firstLink).hostname.replace('www.',''):'';
     html+=`<div class="store-heading">${storeName} <span class="store-ct">${products.length} product${products.length>1?'s':''}</span>${domain?`<a class="store-link" href="https://${domain}" target="_blank" rel="noopener">${domain} &#8599;</a>`:''}</div>`;
-    for(const[catLabel,catProds]of byCat){
-      // Sort by price within each category
-      const sorted=[...catProds].sort((a,b)=>{
+    for(const[subLabel,subProds]of bySub){
+      // Sort by price within each subcategory
+      const sorted=[...subProds].sort((a,b)=>{
         const pa=a.stores.find(s=>s.name===storeName)?.price||99999;
         const pb=b.stores.find(s=>s.name===storeName)?.price||99999;
         return pa-pb;
       });
-      if(byCat.size>1)html+=`<div class="subcat-heading" style="font-size:1rem;margin:1rem 0 .5rem">${catLabel}</div>`;
+      if(bySub.size>1)html+=`<div class="subcat-heading" style="font-size:1rem;margin:1rem 0 .5rem">${subLabel} <span style="font-family:var(--f-m);font-size:.75rem;color:var(--text-mut)">${sorted.length}</span></div>`;
       if(view==='list'){html+=sorted.map(p=>storeListHTML(p,storeName)).join('')}
       else{html+=`<div class="card-grid">${sorted.map(p=>cardHTML(p)).join('')}</div>`}
     }
