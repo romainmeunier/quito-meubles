@@ -217,7 +217,7 @@ const PRODUCTS = [
     msrp: 1725, selected: false,
     rating: { value: 4, fit: 5, overall: 4 },
     verdict: 'BEST FIT — Cross Door 619L, the ONLY one at 70cm depth! 91×183×70. Indurama = easy local service. $1,149 Artefacta (sale). 3 stores in stock.',
-    notes: '70cm depth = flattest on the market. Cross Door = 4 doors. Boyacá 38 units.',
+    notes: '70cm depth = flattest on the market. Cross Door = 4 doors. Boyacá 38 units. Artefacta $1,149 is a promo (expires ~Apr 5, 2026).',
   },
   // LG VS25QFNW REMOVED — actually a Side by Side (not French Door), does not match our criteria
   {
@@ -227,12 +227,12 @@ const PRODUCTS = [
     oem: 'https://www.lg.com/ec/refrigeradora/lg-gm22bgpk',
     specs: ['617 L (516 net)', 'Linear Inverter', 'French Door 3P', '75.6×174×90.1 cm', 'DoorCooling+', 'FRESHBalancer', 'ThinQ Wi-Fi'],
     stores: [
-      { name: 'Alm. Japón', price: 1669, link: 'https://www.almacenesjapon.com/refrigeradora-french-door-lg-617-litros-color-acero-inoxidable/p' },
+      { name: 'Alm. Japón', price: 1970, link: 'https://www.almacenesjapon.com/refrigeradora-french-door-lg-617-litros-color-acero-inoxidable/p' },
     ],
     msrp: 2530, selected: false,
-    rating: { value: 5, fit: 5, overall: 5 },
-    verdict: 'MOST COMPACT — Narrowest (75.6cm) and shortest (174cm). Linear Inverter 10yr. $1,669 Alm. Japón (in stock). Deep (90cm).',
-    notes: 'Only Alm. Japón verified in stock. Kissu OOS. Electromega 404.',
+    rating: { value: 5, fit: 4.5, overall: 4.5 },
+    verdict: 'MOST COMPACT — Narrowest (75.6cm) and shortest (174cm). Linear Inverter 10yr. $1,970 Alm. Japón. Deep (90cm).',
+    notes: '617L gross / 543L net. Only Alm. Japón in stock. Price increased from $1,669.',
   },
   {
     id: 'indurama-992-cr', category: 'kitchen', subcategory: 'Fridge',
@@ -286,16 +286,16 @@ const PRODUCTS = [
     brand: 'Samsung', model: 'RF32CG5N10S9ED', type: 'French Door', color: 'Silver',
     image: 'https://comandato.vteximg.com.br/arquivos/ids/238825/49.jpg?v=639034096564070000',
     oem: null,
-    specs: ['754 L', 'Digital Inverter', 'French Door 3P', '90.8×177.8×86 cm', 'SpaceMax', 'AI Energy Mode', 'Dual Ice Maker'],
+    specs: ['792 L', 'Digital Inverter', 'French Door 3P', '90.8×177.8×86 cm', 'SpaceMax', 'AI Energy Mode', 'Dual Ice Maker'],
     stores: [
       { name: 'La Ganga', price: 1863, link: 'https://laganga.com/refrigeradora-french-door-samsung-792l-rf32cg5n10s9ed.html' },
       { name: 'Comandato', price: 1889, link: 'https://www.comandato.com/refrigeradora-792l-side-by-side-rf32cg5n10s9ed-samsung/p' },
-      { name: 'OrveHogar', price: 1993, link: 'https://www.orvehogar.com/refrigeradora-french-door-samsung-rf32cg5n10s9ed-p86351-32-902-litros-color-silver-1/p' },
+      // OrveHogar removed — link dead (404)
     ],
     msrp: 2496, selected: false,
     rating: { value: 5, fit: 4.5, overall: 5 },
-    verdict: 'BIGGEST CAPACITY — 754L, largest French Door on the market. $1,863 La Ganga / $1,889 Comandato. SpaceMax, AI Energy, Dual Ice Maker.',
-    notes: 'La Ganga $1,863. Comandato $1,889 (miscategorized as "Side by Side").',
+    verdict: 'BIGGEST CAPACITY — 792L, largest French Door on the market. $1,863 La Ganga / $1,889 Comandato. SpaceMax, AI Energy, Dual Ice Maker.',
+    notes: 'La Ganga $1,863. Comandato $1,889 (miscategorized as "Side by Side"). OrveHogar link dead.',
   },
   {
     id: 'midea-mdrf829', category: 'kitchen', subcategory: 'Fridge',
@@ -311,20 +311,7 @@ const PRODUCTS = [
     verdict: 'ULTRA COMPACT — 682L in a tiny footprint (75×173cm). Smallest and shortest of all FDs. $1,899 OrveHogar.',
     notes: 'Midea = Chinese giant, #1 worldwide appliance maker. Incredible dimensions for the capacity.',
   },
-  {
-    id: 'lg-vs25xhwc', category: 'kitchen', subcategory: 'Fridge',
-    brand: 'LG', model: 'VS25XHWC', type: 'French Door Counter Depth', color: 'Silver',
-    image: 'https://orvehogar.vtexassets.com/arquivos/ids/243621/VS25XHWC--7-.jpg.jpg',
-    oem: null,
-    specs: ['674 L', 'Linear Inverter', 'French Door', '77.3×179×85.7 cm', 'InstaView Door-in-Door', 'Craft Ice', 'Dual Ice Maker', 'NatureFRESH', 'Water Dispenser'],
-    stores: [
-      { name: 'OrveHogar', price: 1939, link: 'https://www.orvehogar.com/refrigeradora-lg-vs25xhwc-674-litros-door-in-door-linearcooling-craft-ice-instaview-thinq-color-plateado/p' },
-    ],
-    msrp: 2427, selected: false,
-    rating: { value: 5, fit: 5, overall: 5 },
-    verdict: 'PREMIUM COMPACT — 674L Counter Depth (77cm wide!), InstaView + Craft Ice (round ice balls). $1,939 OrveHogar. Best LG quality/size ratio.',
-    notes: 'Counter Depth = flush with countertop. Craft Ice + Dual Ice Maker. ThinQ Wi-Fi.',
-  },
+  // LG VS25XHWC REMOVED — actually a Side by Side (VS25 prefix = LG SbS line), does not match our criteria
   {
     id: 'indurama-885i', category: 'kitchen', subcategory: 'Fridge',
     brand: 'Indurama', model: 'RI-885I', type: 'Cross Door 4P', color: 'Black',
@@ -479,14 +466,14 @@ const PRODUCTS = [
     brand: 'Whirlpool', model: 'WRE57BKTWW', type: 'Bottom Freezer', color: 'Inox Grey',
     image: 'https://whirlpoolec.vtexassets.com/arquivos/ids/155674/WRE57BKTWW.jpg',
     oem: 'https://www.whirlpool.com.ec/refrigerador-inverter-17-pies-bottom-mount-wre57bktww/p',
-    specs: ['478 L net', 'Xpert Inverter', 'No Frost', '70.1×184×75 cm', 'Touch Panel', 'Turbo Freezer', 'Vacation Mode'],
+    specs: ['484 L', 'Xpert Inverter', 'No Frost', '70.1×184×75 cm', 'Touch Panel', 'Turbo Freezer', 'Vacation Mode'],
     stores: [
       { name: 'Kissu', price: 935, link: 'https://kissu.com.ec/producto.php?n=3468' },
     ],
     msrp: 1629, selected: false,
     rating: { value: 4.5, fit: 3.5, overall: 4 },
-    verdict: 'TOUCH PANEL BF — 478L, touch panel, turbo freezer, vacation mode. $935 Kissu (in stock).',
-    notes: 'Artefacta OOS. Only Kissu verified in stock.',
+    verdict: 'TOUCH PANEL BF — 484L, touch panel, turbo freezer, vacation mode. $935 Kissu. Check stock before buying.',
+    notes: 'Artefacta OOS. Kissu may be OOS — verify before ordering. 484L (not 478L per Whirlpool official specs).',
   },
   {
     id: 'mastermaid-cs670fw', category: 'kitchen', subcategory: 'Fridge',
