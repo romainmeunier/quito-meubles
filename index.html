@@ -29,7 +29,7 @@ html{scroll-behavior:smooth}
 body{font-family:var(--f-b);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;transition:background var(--t),color var(--t);-webkit-font-smoothing:antialiased}
 
 /* Layout */
-.wrap{max-width:1200px;margin:0 auto;padding:0 2rem}
+.wrap{max-width:1800px;margin:0 auto;padding:0 2rem}
 .header{padding-top:2.5rem}
 .header-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.5rem}
 .header-title{font-family:var(--f-d);font-size:clamp(2rem,5vw,3rem);font-weight:400;line-height:1.1}
@@ -133,7 +133,7 @@ select.sort-sel:hover{border-color:var(--border-s);color:var(--text)}
 .list-item.sel .list-sel{border-color:var(--accent);background:var(--accent);color:white}
 
 /* ═══ CARD VIEW ═══ */
-.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1rem}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem}
 .card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);transition:all var(--t);display:flex;flex-direction:column}
 .card:hover{box-shadow:0 4px 16px rgba(44,36,32,.06);border-color:var(--border-s)}
 .card.sel{border-color:var(--sel-border);background:var(--sel-bg);box-shadow:0 4px 16px rgba(44,36,32,.06),0 0 0 1px var(--sel-border)}
@@ -165,7 +165,7 @@ select.sort-sel:hover{border-color:var(--border-s);color:var(--text)}
 .card-notes textarea{width:100%;font-family:var(--f-b);font-size:.78rem;color:var(--text-sec);background:transparent;border:none;resize:vertical;min-height:2rem;line-height:1.5;outline:none}
 
 /* ═══ MOSAIC VIEW ═══ */
-.mosaic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.8rem}
+.mosaic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.6rem}
 .mosaic{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);transition:all var(--t);cursor:default;position:relative}
 .mosaic:hover{box-shadow:0 4px 20px rgba(44,36,32,.08);border-color:var(--border-s)}
 .mosaic.sel{border-color:var(--sel-border);box-shadow:0 0 0 2px var(--sel-border)}
