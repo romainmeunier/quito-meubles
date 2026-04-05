@@ -170,15 +170,14 @@ select.sort-sel:hover{border-color:var(--border-s);color:var(--text)}
 .mosaic.sel{box-shadow:inset 0 0 0 3px var(--sel-border)}
 .mosaic img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease}
 .mosaic:hover img{transform:scale(1.08)}
-.mosaic-overlay{position:absolute;bottom:0;left:0;right:0;padding:.6rem .7rem;background:linear-gradient(transparent 0%,rgba(0,0,0,.75) 100%);color:white;display:flex;justify-content:space-between;align-items:flex-end;opacity:0;transition:opacity .2s ease}
-.mosaic:hover .mosaic-overlay{opacity:1}
+.mosaic-overlay{position:absolute;bottom:0;left:0;right:0;padding:.6rem .7rem;background:linear-gradient(transparent 0%,rgba(0,0,0,.75) 100%);color:white;display:flex;justify-content:space-between;align-items:flex-end}
 .mosaic-name{font-family:var(--f-d);font-size:.95rem;line-height:1.2;text-shadow:0 1px 4px rgba(0,0,0,.5)}
 .mosaic-name small{display:block;font-family:var(--f-b);font-size:.68rem;font-weight:400;opacity:.8;margin-top:.1rem}
 .mosaic-price{font-family:var(--f-m);font-size:1.05rem;font-weight:600;text-shadow:0 1px 4px rgba(0,0,0,.5);flex-shrink:0;margin-left:.4rem;text-align:right}
 .mosaic-price small{display:block;font-size:.6rem;font-weight:400;opacity:.7}
-.mosaic-sel{position:absolute;top:.4rem;right:.4rem;width:1.4rem;height:1.4rem;border-radius:50%;border:2px solid rgba(255,255,255,.5);background:rgba(0,0,0,.15);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--t);color:transparent;z-index:1;opacity:0}
-.mosaic:hover .mosaic-sel{opacity:1}
-.mosaic.sel .mosaic-sel{opacity:1;border-color:var(--accent);background:var(--accent);color:white}
+.mosaic-sel{position:absolute;top:.4rem;right:.4rem;width:1.4rem;height:1.4rem;border-radius:50%;border:2px solid rgba(255,255,255,.5);background:rgba(0,0,0,.15);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--t);color:transparent;z-index:1}
+.mosaic-sel:hover{border-color:white;background:rgba(0,0,0,.4)}
+.mosaic.sel .mosaic-sel{border-color:var(--accent);background:var(--accent);color:white}
 .mosaic-noimg{width:100%;height:100%;background:var(--bg-hover);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--text-mut)}
 @media(max-width:720px){.mosaic-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:3px}.mosaic-name{font-size:.8rem}.mosaic-price{font-size:.85rem}}
 
@@ -2274,11 +2273,19 @@ function render(){
   // Group by subcategory (preserve sort order within groups)
   const groups=new Map();items.forEach(p=>{if(!groups.has(p.subcategory))groups.set(p.subcategory,[]);groups.get(p.subcategory).push(p)});
   let html='';
-  for(const[sub,prods]of groups){
-    if(groups.size>1)html+=`<div class="subcat-heading">${sub}</div>`;
-    if(view==='list'){html+=prods.map(listHTML).join('')}
-    else if(view==='mosaic'){html+=`<div class="mosaic-grid">${prods.map(mosaicHTML).join('')}</div>`}
-    else{html+=`<div class="card-grid">${prods.map(cardHTML).join('')}</div>`}
+  if(view==='mosaic'){
+    // Group by brand for mosaic view
+    const byBrand=new Map();items.forEach(p=>{if(!byBrand.has(p.brand))byBrand.set(p.brand,[]);byBrand.get(p.brand).push(p)});
+    for(const[brand,prods]of byBrand){
+      html+=`<div class="subcat-heading" style="margin-left:0;margin-right:0">${brand} <span style="font-family:var(--f-m);font-size:.8rem;color:var(--text-mut)">${prods.length}</span></div>`;
+      html+=`<div class="mosaic-grid">${prods.map(mosaicHTML).join('')}</div>`;
+    }
+  } else {
+    for(const[sub,prods]of groups){
+      if(groups.size>1)html+=`<div class="subcat-heading">${sub}</div>`;
+      if(view==='list'){html+=prods.map(listHTML).join('')}
+      else{html+=`<div class="card-grid">${prods.map(cardHTML).join('')}</div>`}
+    }
   }
   const bleed=view==='mosaic'?'margin:0 -2rem':'';
   el.innerHTML=`<div style="animation:fadeUp .3s ease;${bleed}">${html}</div>`;
