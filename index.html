@@ -771,13 +771,15 @@ const PRODUCTS = [
     oem: 'https://www.samsung.com/latin/washers-and-dryers/dryers/',
     specs: ['24 kg', 'Electric', 'Sensor Dry', 'SmartThings', 'Front Load', 'Reversible door'],
     stores: [
+      { name: 'Marcimex', price: 779, link: 'https://www.marcimex.com/electrodomesticos-secadoras-electricas-55216-1/p' },
+      { name: 'LaGanga', price: 828, link: 'https://laganga.com/secadora-a-electrica-samsung-24kg-dve24dg800vap.html' },
+      { name: 'Artefacta', price: 809, link: 'https://www.artefacta.com/secadora-electrica-samsung-dve24dg800vap/p' },
       { name: 'Comandato', price: 843, link: 'https://www.comandato.com/secadora-electrica-samsung-black-24kg-dve24dg800vap/p' },
-      { name: 'LaGanga', price: 801, link: 'https://laganga.com/secadora-a-electrica-samsung-24kg-dve24dg800vap.html' },
     ],
     msrp: 950, selected: false,
     rating: { value: 3.5, fit: 4.5, overall: 4 },
-    verdict: 'PREMIUM ELECTRIC 24KG — SmartThings app control, Sensor Dry, reversible door. $801 La Ganga (best). Expensive vs LG 25kg at $579.',
-    notes: 'La Ganga $801. Comandato $843. SmartThings + porte réversible = seuls avantages vs LG.',
+    verdict: 'PREMIUM ELECTRIC 24KG — SmartThings app control, Sensor Dry, reversible door. $779 Marcimex (best). Expensive vs LG 25kg at $579.',
+    notes: 'Marcimex $779. La Ganga $828. Artefacta $809. Comandato $843.',
   },
 
   // ─── LAUNDRY — More Washers ───
@@ -841,16 +843,17 @@ const PRODUCTS = [
     oem: 'https://www.whirlpool.com.ec/secadora-electrica-19kg-7mwed1900ew/p',
     specs: ['19 kg', 'Electric 220V', 'Dry Xpert sensor', 'Wrinkle prevention 40min'],
     stores: [
-      { name: 'Mi Bodega', price: 525, link: 'https://mibodega.ec/todas-las-categorias/1768-secadora-whirpool-19kg-7mwed1900ewcarga-frontal.html' },
       { name: 'CRECOS', price: 550, link: 'https://www.crecos.com/secadora-electrica-whirlpool-7mwed1900ew-19-kg-carga-frontal-sensor-dry-xpert-color-blanco/p' },
-      { name: 'Electromega', price: 540, link: 'https://www.electromega.ec/product-page/secadora-whirlpool-7mwed1900ew-electrica-blanca-42-lbs-19kg-6-ciclos' },
-      { name: 'Marcimex', price: 569, link: 'https://www.marcimex.com/electrodomesticos-secadoras-a-gas-21812/p' },
       { name: 'OrveHogar', price: 550, link: 'https://www.orvehogar.com/secadora-electrica-whirlpool-7mwed1900ew-19kg/p' },
+      { name: 'Electromega', price: 540, link: 'https://www.electromega.ec/product-page/secadora-whirlpool-7mwed1900ew-electrica-blanca-42-lbs-19kg-6-ciclos' },
+      { name: 'LaGanga', price: 557, link: 'https://laganga.com/electrodomesticos/lavado-y-secado/secadoras/secadora-electrica-whirpool-blanca-19kg-7mwed1900ew.html' },
+      { name: 'Artefacta', price: 569, link: 'https://www.artefacta.com/secadora-electrica-whirlpool-frontal-19-kg-7mwed1900ew.html' },
+      { name: 'Marcimex', price: 569, link: 'https://www.marcimex.com/electrodomesticos-secadoras-a-gas-21812/p' },
     ],
     msrp: 650, selected: false,
     rating: { value: 4.5, fit: 4, overall: 4 },
-    verdict: 'BUDGET ELECTRIC DRYER — $525 Mi Bodega (best!) for 19kg Whirlpool electric. 220V required. 4 stores.',
-    notes: 'Mi Bodega $525. CRECOS $550. Electromega $565. Marcimex $569.',
+    verdict: 'BUDGET ELECTRIC 19KG — $540 Electromega (best). Dry Xpert sensor. 220V. 6 boutiques. Petit (19kg) pour un lave-linge 22kg.',
+    notes: 'MiBodega en rupture. Electromega $540. CRECOS/OrveHogar $550.',
   },
 
   {
@@ -899,6 +902,56 @@ const PRODUCTS = [
     verdict: 'CHEAPEST 25KG ELECTRIC — LG 25kg electric at $579 Marcimex. No gas line needed. 220V required.',
     notes: 'Electric version of the DT25WTGK.',
   },
+  // ─── New electric dryers Apr 2026 ───
+  {
+    id: 'samsung-dve24a5370v', category: 'laundry', subcategory: 'Dryer',
+    brand: 'Samsung', model: 'DVE24A5370V/AP', type: 'Electric Dryer 24kg', color: 'Black',
+    image: 'https://marcimex.vtexassets.com/arquivos/ids/241797/55205.png',
+    oem: null,
+    specs: ['24 kg', 'Electric 220V', 'Sensor Dry', 'Front Load', 'Reversible door'],
+    stores: [
+      { name: 'Marcimex', price: 699, link: 'https://www.marcimex.com/electrodomesticos-secadoras-electricas-55205-1/p' },
+    ],
+    msrp: null, selected: false,
+    rating: { value: 4.5, fit: 4.5, overall: 4.5 },
+    verdict: 'BEST VALUE 24KG — Samsung 24kg electric at $699 Marcimex. Sensor Dry, reversible door. $120 more que le LG 25kg mais Samsung quality.',
+    notes: 'Seul magasin pour le moment.',
+  },
+  {
+    id: 'lg-df50mv2s6we', category: 'laundry', subcategory: 'Dryer',
+    brand: 'LG', model: 'DF50MV2S6WE', type: 'Electric Dryer 25kg', color: 'Middle Black',
+    image: 'https://orvehogar.vtexassets.com/arquivos/ids/182555/DF50MV2S6WE-1.jpg',
+    oem: null,
+    specs: ['25 kg', 'Electric 220V', 'Sensor Dry', 'Smart Diagnosis', 'Front Load'],
+    stores: [
+      { name: 'Marcimex', price: 729, link: 'https://www.marcimex.com/electrodomesticos-secadoras-electricas-44294/p' },
+      { name: 'CRECOS', price: 739, link: 'https://www.crecos.com/secadora-electrica-lg-df50mv2s6we-25-kg-carga-frontal-color-middle-black/p' },
+      { name: 'OrveHogar', price: 739, link: 'https://www.orvehogar.com/secadora-electrica-lg-df50mv2s6we-25-kg-carga-frontal-color-middle-black/p' },
+      { name: 'Comandato', price: 783, link: 'https://www.comandato.com/secadora-electrica-lg-middle-black-25kg-df50mv2s6we/p' },
+      { name: 'LaGanga', price: 785, link: 'https://laganga.com/secadora-carga-frontal-electrica-lg-cromada-25kg-df50mv2s6we.html' },
+    ],
+    msrp: null, selected: false,
+    rating: { value: 5, fit: 5, overall: 5 },
+    verdict: 'LG 25KG NEWER MODEL — Même capacité que le DT25WTGKE mais modèle plus récent + Smart Diagnosis. $729 Marcimex. 5 boutiques.',
+    notes: 'Version blanche DF50WV2S6WE aussi dispo. $150 de plus que le DT25WTGKE pour Smart Diagnosis + plus de boutiques.',
+  },
+  {
+    id: 'whirlpool-7mwed7120lc', category: 'laundry', subcategory: 'Dryer',
+    brand: 'Whirlpool', model: '7MWED7120LC', type: 'Electric Dryer 28kg', color: 'Grey',
+    image: 'https://orvehogar.vtexassets.com/arquivos/ids/179300/7MWED7120LC.jpg',
+    oem: null,
+    specs: ['28 kg', 'Electric 220V', 'AccuDry Sensor', 'Wrinkle Shield', 'Front Load', 'Steam'],
+    stores: [
+      { name: 'Boyacá', price: 776, link: 'https://www.boyaca.com/electrodomesticos/lavadoras-y-secadoras/secadora-electrica-de-28kg-whirlpool-101399' },
+      { name: 'CRECOS', price: 853, link: 'https://www.crecos.com/secadora-electrica-whirlpool-7mwed7120lc-p8768-28-kg-carga-frontal-color-gris/p' },
+      { name: 'OrveHogar', price: 853, link: 'https://www.orvehogar.com/secadora-electrica-whirlpool-7mwed7120lc-p8768-28-kg-carga-frontal-color-gris/p' },
+    ],
+    msrp: null, selected: false,
+    rating: { value: 4, fit: 4, overall: 4 },
+    verdict: 'BIGGEST DRYER 28KG — Le plus gros du marché. AccuDry, Wrinkle Shield, Steam. $776 Boyacá (best). Pour charges massives.',
+    notes: 'Artefacta $1163 (à éviter). Boyacá bien moins cher.',
+  },
+
   // ─── New finds Apr 2026 ───
   {
     id: 'mabe-lme9120', category: 'laundry', subcategory: 'Washing Machine',
