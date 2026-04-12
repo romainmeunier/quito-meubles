@@ -2593,21 +2593,66 @@ const PRODUCTS = [
     notes: '150×86×45cm. Collection Eiffel. 150cm court mais bon rapport Q/P. Vitefama IVA included.',
   },
 
-  // ═══════════ CLEANING — STEAM MOPS ═══════════
-  // For 160m2 tile flooring. Market very limited in Ecuador — most Kärcher models OOS.
+  // ═══════════ CLEANING — STEAM + VACUUM ═══════════
+  // For 160m2 tile flooring. No true single-device vacuum+steam combo in Ecuador retail.
+  // Sukasa Kärcher VCL3+SC2 combo CONFIRMED OOS in-store 2026-04-12.
   {
-    id: 'sukasa-karcher-vcl3-sc2', category: 'cleaning', subcategory: 'Steam Mop',
-    brand: 'Kärcher', model: 'VCL3 + SC2 Combo', type: 'Vacuum + Steam Cleaner', color: 'White',
-    image: 'https://web-pro-resources.s3.us-east-2.amazonaws.com/public/original-resources/product/2cb8b882-d59f-4ea3-aff4-b4be72bce8dc/image/aspiradora-vert-1500w-blanco-cfiltro-hepa--maquina-vapor.jpg',
-    oem: 'https://www.sukasa.com/productos/karcher-aspiradora-vertical-vcl3-sc2-blanco-con-filtro-hepa-maquina-a-vapor-1500w/2cb8b882-d59f-4ea3-aff4-b4be72bce8dc',
-    specs: ['SC2: 1500W, 3.2 bar, 1L tank', 'VCL3: vacuum with HEPA filter', 'Combo: aspiradora + vapor', 'Floor kit included'],
+    id: 'megamaxi-karcher-vcl2-sc2', category: 'cleaning', subcategory: 'Steam Mop',
+    brand: 'Kärcher', model: 'VCL2 + SC2 Deluxe Combo', type: 'Vacuum + Steam Cleaner', color: 'White/Yellow',
+    image: null,
+    oem: 'https://www.megamaxi.com/shop/electrodomesticos/electrodomesticos-hogar/aspiradoras/combo-aspiradora-vcl2-equipo-a-vapor-sc2-deluxe-karcher-1000-watts/',
+    specs: ['SC2 Deluxe: 1500W, 3.2 bar, 1L tank, 6.5 min heat-up', 'VCL2: 1000W, 0.7L dust, HEPA filter', 'Combo: 2 appareils séparés', '~75 m2 par remplissage SC2 (2 remplissages pour 160m2)'],
     stores: [
-      { name: 'Sukasa', price: 246, link: 'https://www.sukasa.com/productos/karcher-aspiradora-vertical-vcl3-sc2-blanco-con-filtro-hepa-maquina-a-vapor-1500w/2cb8b882-d59f-4ea3-aff4-b4be72bce8dc' },
+      { name: 'Megamaxi', price: 194, link: 'https://www.megamaxi.com/shop/electrodomesticos/electrodomesticos-hogar/aspiradoras/combo-aspiradora-vcl2-equipo-a-vapor-sc2-deluxe-karcher-1000-watts/' },
     ],
     msrp: null, selected: false,
     rating: { value: 4.5, fit: 5, overall: 5 },
-    verdict: 'TOP PICK — Kärcher SC2 (1500W, 1L, 3.2 bar) + aspirateur VCL3. Le seul adapté pour 160m2 de carrelage sans remplir toutes les 5 min. $246 les deux = excellent rapport qualité/prix.',
-    notes: 'SC2 = le Kärcher idéal pour 160m2 carrelage: réservoir 1L = 2-3 remplissages max, 1500W, 3.2 bar. VCL3 aspirateur vertical HEPA en bonus. Combo imbattable à ce prix. Sukasa IVA included.',
+    verdict: 'TOP PICK — Kärcher SC2 Deluxe (1500W, 1L, 3.2 bar) + aspirateur VCL2 HEPA. $194 les deux chez Megamaxi. 2 remplissages pour 160m2. Meilleur rapport qualité/prix.',
+    notes: 'SC2 Deluxe = version améliorée du SC2. 75m2 par remplissage, donc 2 remplissages pour 160m2. VCL2 = aspirateur vertical + portatif. Combo 2 appareils séparés mais complémentaires. Megamaxi IVA included.',
+  },
+  {
+    id: 'karcher-sc3-easyfix', category: 'cleaning', subcategory: 'Steam Mop',
+    brand: 'Kärcher', model: 'SC3 EasyFix', type: 'Steam Cleaner', color: 'Yellow',
+    image: null,
+    oem: 'https://www.artefacta.com/limpiadora-a-vapor-karcher-sc-3-easyfix-yellow-mx-1570-w-3-2-psi-952170/p',
+    specs: ['1900W', '3.5 bar', '1L tank with continuous refill', '30-sec heat-up', '3.1 kg', 'EasyFix velcro pad'],
+    stores: [
+      { name: 'Artefacta', price: null, link: 'https://www.artefacta.com/limpiadora-a-vapor-karcher-sc-3-easyfix-yellow-mx-1570-w-3-2-psi-952170/p' },
+      { name: 'TIA', price: 219, link: 'https://www.tia.com.ec/limpiador-a-vapor-karcher-sc3-133216000.html' },
+    ],
+    msrp: null, selected: false,
+    rating: { value: 5, fit: 5, overall: 5 },
+    verdict: 'MEILLEUR VAPEUR SOLO — SC3 EasyFix: remplissage continu (pas d\'arrêt), chauffe 30 sec, 3.5 bar. Idéal pour 160m2 sans interruption. ~$219 TIA. Pas d\'aspirateur inclus.',
+    notes: 'Le SC3 est le meilleur Kärcher pour 160m2: réservoir rechargeable en continu = zéro downtime. 30 sec de chauffe vs 6.5 min pour le SC2. 3.5 bar > 3.2 bar SC2. Nécessite un aspirateur séparé.',
+  },
+  {
+    id: 'karcher-sc4-premium', category: 'cleaning', subcategory: 'Steam Mop',
+    brand: 'Kärcher', model: 'SC4 Premium', type: 'Steam Cleaner', color: 'Yellow',
+    image: null,
+    oem: 'https://karchertienda.com/producto/limpiadora-a-vapor-sc4-premium/',
+    specs: ['2000W', 'Double tank (refillable while in use)', 'Cable compartment', 'Accessory storage', 'Floor nozzle parking'],
+    stores: [
+      { name: 'Karcher Tienda', price: 399, link: 'https://karchertienda.com/producto/limpiadora-a-vapor-sc4-premium/' },
+      { name: 'TIA', price: null, link: 'https://www.tia.com.ec/limpiador-a-vapor-premium-1500w-karcher-sc4-139870000.html' },
+    ],
+    msrp: null, selected: false,
+    rating: { value: 4.5, fit: 5, overall: 4.5 },
+    verdict: 'HAUT DE GAMME — SC4 Premium: 2000W, double réservoir rechargeable. Le plus puissant Kärcher dispo. $399. Overkill si le SC3 à $219 fait le job.',
+    notes: 'Top of line Kärcher consumer. Double tank = jamais d\'arrêt. 2000W = plus de vapeur. Rangement accessoires intégré. Cher mais le meilleur pour grandes surfaces.',
+  },
+  {
+    id: 'yoper-electrolux-stk12-mop11', category: 'cleaning', subcategory: 'Steam Mop',
+    brand: 'Electrolux', model: 'STK12 + MOP11 Combo', type: 'Vacuum + Steam Mop', color: 'Grey',
+    image: null,
+    oem: 'https://www.yoper.com.ec/product?identifier=10932',
+    specs: ['STK12: 1000W vacuum, HEPA, 2-in-1 (vertical+portatif)', 'MOP11: 1300W steam mop, 99.9% bacteria', 'Combo: 2 appareils séparés'],
+    stores: [
+      { name: 'Yoper', price: 115, link: 'https://www.yoper.com.ec/product?identifier=10932' },
+    ],
+    msrp: null, selected: false,
+    rating: { value: 3.5, fit: 4, overall: 3.5 },
+    verdict: 'BUDGET COMBO — Aspirateur + balai vapeur Electrolux à $115. Le moins cher. Qualité inférieure au Kärcher mais fait le job.',
+    notes: 'Electrolux STK12 aspirateur vertical + MOP11 balai vapeur. $115 les deux chez Yoper. Bon prix d\'entrée. MOP11 aussi dispo seul chez Gran Hogar ($82), Kissu, Electrotienda.',
   },
   {
     id: 'tia-karcher-sc1', category: 'cleaning', subcategory: 'Steam Mop',
@@ -2741,8 +2786,11 @@ const ADDED_DATES={
   'evl-evs-tl65':'2026-04-12','sonya-tilt-37-90':'2026-04-12',
   'radioshack-1606008':'2026-04-12','aa-tech-32-95':'2026-04-12','evl-evs-fx92':'2026-04-12',
   // 2026-04-10 — Steam mops
-  'sukasa-karcher-vcl3-sc2':'2026-04-10','tia-karcher-sc1':'2026-04-10',
+  'tia-karcher-sc1':'2026-04-10',
   'granhogar-electrolux-mop11':'2026-04-10','tventas-livington-steam':'2026-04-10',
+  // 2026-04-12 — Steam/vacuum combos
+  'megamaxi-karcher-vcl2-sc2':'2026-04-12','karcher-sc3-easyfix':'2026-04-12',
+  'karcher-sc4-premium':'2026-04-12','yoper-electrolux-stk12-mop11':'2026-04-12',
 };
 function addedAt(p){return ADDED_DATES[p.id]||null}
 function isNew(p){const d=ADDED_DATES[p.id];if(!d)return false;return(Date.now()-new Date(d+'T00:00:00').getTime())<7*86400000}
