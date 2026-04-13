@@ -353,14 +353,14 @@ const PRODUCTS = [
     oem: 'https://www.lg.com/ec/lavadoras-y-secadoras/lg-wt19dvtm',
     specs: ['19 kg', 'Smart Inverter', 'TurboDrum', 'Top Load', '10yr motor warranty'],
     stores: [
-      { name: 'Comandato', price: 520, link: 'https://www.comandato.com/lavadora-automatica-lg-wt19dvtm-19-kg-smart-inverter/p' },
-      { name: 'Electromega', price: 495, link: 'https://electromegaecuador.com/electrodomesticos/8508-lavadora-lg-19-kgs-42-lbs-digital-smart-inverter-turbodrum-wt19dvtm.html' },
       { name: 'Marcimex', price: 493, link: 'https://www.marcimex.com/electrodomesticos-lavadora-automatica-50393/p' },
+      { name: 'Comandato', price: 495, link: 'https://www.comandato.com/lavadora-automatica-lg-wt19dvtm-19-kg-smart-inverter/p' },
+      // Electromega OOS 2026-04-13
     ],
     msrp: 599, selected: false,
     rating: { value: 5, fit: 4, overall: 4.5 },
-    verdict: 'LG 19KG — $495 Electromega (best). Smart Inverter motor (10yr warranty), TurboDrum.',
-    notes: 'Electromega $495 (best). Comandato/Marcimex $520. DePrati delisted.',
+    verdict: 'LG 19KG — $493 Marcimex (best). Smart Inverter motor (10yr warranty), TurboDrum.',
+    notes: 'Marcimex $493. Comandato $495. Electromega OOS. DePrati delisted.',
   },
   {
     id: 'whirlpool-ww20bt', category: 'laundry', subcategory: 'Washing Machine',
@@ -399,15 +399,15 @@ const PRODUCTS = [
     oem: 'https://shop.samsung.com/latin/ecu/ec/shop/electrodomesticos/lavado/lavadoras.html',
     specs: ['26 kg', 'AI EcoBubble', 'Front Load', 'AI Wash', 'Super Speed 28min', 'Steam'],
     stores: [
-      { name: 'Comandato', price: 942, link: 'https://www.comandato.com/lavadora-samsung-ai-ecobubble-negro-26kg-wf26dg8250avap/p' },
-      { name: 'Marcimex', price: 999, link: 'https://www.marcimex.com/electrodomesticos-lavadora-automatica-50400/p' },
+      { name: 'Comandato', price: 897, link: 'https://www.comandato.com/lavadora-samsung-ai-ecobubble-negro-26kg-wf26dg8250avap/p' },
       { name: 'OrveHogar', price: 929, link: 'https://www.orvehogar.com/lavadora-samsung-carga-frontal-wf26dg8250avap-26-kg-color-negro/p' },
       { name: 'CRECOS', price: 929, link: 'https://www.crecos.com/lavadora-de-carga-frontal-samsung-wf26dg8250avap-con-ecobubble-y-ai-control--1/p' },
+      { name: 'Marcimex', price: 999, link: 'https://www.marcimex.com/electrodomesticos-lavadora-automatica-50400/p' },
       // Sukasa delisted 2026-04-10 (404)
     ],
     msrp: 1100, selected: false,
     rating: { value: 4, fit: 3.5, overall: 3.5 },
-    verdict: 'FRONT LOAD PREMIUM — 26kg! AI EcoBubble, steam hygiene, 28-min Super Speed. $929 OrveHogar/CRECOS (best). Monster.',
+    verdict: 'FRONT LOAD PREMIUM — 26kg! AI EcoBubble, steam hygiene, 28-min Super Speed. $897 Comandato (best). Monster.',
     notes: 'Front load = better wash quality. 26kg is massive. Leaves ~$400 for dryer.',
   },
 
@@ -420,13 +420,12 @@ const PRODUCTS = [
     specs: ['24 kg', 'Electric', 'Sensor Dry', 'SmartThings', 'Front Load', 'Reversible door'],
     stores: [
       { name: 'Marcimex', price: 779, link: 'https://www.marcimex.com/electrodomesticos-secadoras-electricas-50387/p' },
-      { name: 'Comandato', price: 825, link: 'https://www.comandato.com/secadora-electrica-samsung-black-24kg-dve24dg800vap/p' },
-      // Artefacta delisted 2026-04-12 (unavailable)
+      { name: 'Comandato', price: 785, link: 'https://www.comandato.com/secadora-electrica-samsung-black-24kg-dve24dg800vap/p' },
     ],
     msrp: 950, selected: false,
     rating: { value: 3.5, fit: 4.5, overall: 4 },
-    verdict: 'PREMIUM ELECTRIC 24KG — SmartThings app control, Sensor Dry, reversible door. $779 Marcimex (best). Expensive vs LG 25kg at $579.',
-    notes: 'Marcimex $779. Comandato $825. Artefacta/LaGanga delisted.',
+    verdict: 'PREMIUM ELECTRIC 24KG — SmartThings app control, Sensor Dry, reversible door. $779 Marcimex (best). Comandato $785.',
+    notes: 'Marcimex $779. Comandato $785.',
   },
 
   // ─── LAUNDRY — More Washers ───
@@ -453,15 +452,15 @@ const PRODUCTS = [
     oem: 'https://www.electrolux.com.ec/lavadora-cargasuperior-ls22i-premiumcare-impeller-22kg-silver/p',
     specs: ['22 kg', 'Top Load', 'Premium Care', 'Impeller', 'Water reuse', '11 programs'],
     stores: [
-      { name: 'Boyacá', price: 490, link: 'https://www.boyaca.com/electrodomesticos/lavadoras-y-secadoras/lavadora-carga-superior-ls22i-premium-care-impeller-22kg-silver-electrolux-100860' },
       { name: 'Marcimex', price: 489, link: 'https://www.marcimex.com/electrodomesticos-lavadora-automatica-ls22i/p' },
+      // Boyacá OOS 2026-04-13
       { name: 'CRECOS', price: 493, link: 'https://www.crecos.com/lavadora-automatica-electrolux-ls22i-p8749-22-kg-carga-superior-premium-care-impeller-color-silver/p' },
       { name: 'OrveHogar', price: 493, link: 'https://www.orvehogar.com/lavadora-electrolux-ls22i-22-kg-premium-care/p' },
     ],
     msrp: 634, selected: true,
     rating: { value: 4.5, fit: 4.5, overall: 4.5 },
-    verdict: 'BIGGEST ELECTROLUX — 22kg at $489 Marcimex (best!). Water reuse function, king-size duvet program. Silver. 4 stores.',
-    notes: 'Marcimex $489. Boyacá $490. CRECOS/OrveHogar $493. Artefacta/TVentas delisted.',
+    verdict: 'BIGGEST ELECTROLUX — 22kg at $489 Marcimex (best!). Water reuse function, king-size duvet program. Silver. 3 stores.',
+    notes: 'Marcimex $489. CRECOS/OrveHogar $493. Boyacá OOS. Artefacta/TVentas delisted.',
   },
   // indurama-lri22dgr REMOVED 2026-04-10 — OOS at Boyacá (only store)
 
@@ -474,14 +473,13 @@ const PRODUCTS = [
     stores: [
       { name: 'CRECOS', price: 550, link: 'https://www.crecos.com/secadora-electrica-whirlpool-7mwed1900ew-19-kg-carga-frontal-sensor-dry-xpert-color-blanco/p' },
       { name: 'OrveHogar', price: 550, link: 'https://www.orvehogar.com/secadora-electrica-whirlpool-7mwed1900ew-19-kg-carga-frontal-sensor-dry-xpert-color-blanco/p' },
-      { name: 'Comandato', price: 552, link: 'https://www.comandato.com/secadora-electrica-whirlpool-7mwed1900ew-42-libras-color-blanco/p' },
+      { name: 'Comandato', price: 525, link: 'https://www.comandato.com/secadora-electrica-whirlpool-7mwed1900ew-42-libras-color-blanco/p' },
       { name: 'Marcimex', price: 569, link: 'https://www.marcimex.com/electrodomesticos-secadoras-a-gas-21812/p' },
-      // Electromega delisted 2026-04-12 (dead link). Artefacta delisted (unavailable).
     ],
     msrp: 650, selected: false,
     rating: { value: 4.5, fit: 4, overall: 4 },
-    verdict: 'BUDGET ELECTRIC 19KG — $550 CRECOS/OrveHogar (best). Dry Xpert sensor. 220V. 4 boutiques. Petit (19kg) pour un lave-linge 22kg.',
-    notes: 'CRECOS/OrveHogar $550. Comandato $552. Marcimex $569. Electromega/Artefacta/LaGanga delisted.',
+    verdict: 'BUDGET ELECTRIC 19KG — $525 Comandato (best). Dry Xpert sensor. 220V. 4 boutiques. Petit (19kg) pour un lave-linge 22kg.',
+    notes: 'Comandato $525. CRECOS/OrveHogar $550. Marcimex $569.',
   },
 
   {
@@ -491,15 +489,15 @@ const PRODUCTS = [
     oem: null,
     specs: ['21 kg', 'Top Load', 'EcoBubble', 'Digital Inverter', 'Smart Control'],
     stores: [
+      { name: 'Comandato', price: 506, link: 'https://www.comandato.com/lavadora-automatica-samsung-inverter-blanco-21kg-wa21cg6746bwap/p' },
       { name: 'Marcimex', price: 519, link: 'https://www.marcimex.com/electrodomesticos-lavadora-automatica-50396/p' },
       { name: 'CRECOS', price: 539, link: 'https://www.crecos.com/lavadora-superior-wa21cg6746bdap---con-ecobubble-tecnologia-digital-inverter-blanca-1/p' },
       { name: 'OrveHogar', price: 539, link: 'https://www.orvehogar.com/lavadora-superior-wa21cg6746bdap---con-ecobubble-tecnologia-digital-inverter-blanca-1/p' },
-      { name: 'Comandato', price: 532, link: 'https://www.comandato.com/lavadora-automatica-samsung-inverter-blanco-21kg-wa21cg6746bwap/p' },
     ],
     msrp: null, selected: false,
     rating: { value: 4.5, fit: 4.5, overall: 4.5 },
-    verdict: 'BEST VALUE 21KG — Samsung EcoBubble + Digital Inverter at $519. 4 stores. Excellent mid-range.',
-    notes: 'Marcimex $519. CRECOS $519. OrveHogar $519. Comandato $532.',
+    verdict: 'BEST VALUE 21KG — Samsung EcoBubble + Digital Inverter at $506 Comandato (best). 4 stores. Excellent mid-range.',
+    notes: 'Comandato $506. Marcimex $519. CRECOS/OrveHogar $539.',
   },
   {
     id: 'lg-wt23-23kg', category: 'laundry', subcategory: 'Washing Machine',
@@ -553,10 +551,10 @@ const PRODUCTS = [
     oem: null,
     specs: ['25 kg', 'Electric 220V', 'Sensor Dry', 'Smart Diagnosis', 'FlowSense', 'Front Load', 'Reversible door', 'Smart Pairing'],
     stores: [
+      { name: 'Comandato', price: 721, link: 'https://www.comandato.com/secadora-electrica-lg-middle-black-25kg-df50mv2s6we/p' },
       { name: 'Marcimex', price: 729, link: 'https://www.marcimex.com/electrodomesticos-secadoras-electricas-44294/p' },
-      { name: 'CRECOS', price: 766, link: 'https://www.crecos.com/secadora-electrica-lg-df50mv2s6we-25-kg-carga-frontal-color-middle-black/p' },
-      { name: 'OrveHogar', price: 766, link: 'https://www.orvehogar.com/secadora-electrica-lg-df50mv2s6we-25-kg-carga-frontal-color-middle-black/p' },
-      { name: 'Comandato', price: 758, link: 'https://www.comandato.com/secadora-electrica-lg-middle-black-25kg-df50mv2s6we/p' },
+      { name: 'CRECOS', price: 729, link: 'https://www.crecos.com/secadora-electrica-lg-df50mv2s6we-25-kg-carga-frontal-color-middle-black/p' },
+      { name: 'OrveHogar', price: 729, link: 'https://www.orvehogar.com/secadora-electrica-lg-df50mv2s6we-25-kg-carga-frontal-color-middle-black/p' },
     ],
     msrp: null, selected: false,
     rating: { value: 4.5, fit: 5, overall: 4.5 },
@@ -570,14 +568,13 @@ const PRODUCTS = [
     oem: null,
     specs: ['28 kg', 'Electric 220V', 'AccuDry Sensor', 'Wrinkle Shield', 'Front Load', 'Steam'],
     stores: [
-      { name: 'Boyacá', price: 809, link: 'https://www.boyaca.com/electrodomesticos/lavadoras-y-secadoras/secadora-electrica-de-28kg-whirlpool-101399' },
       { name: 'CRECOS', price: 853, link: 'https://www.crecos.com/secadora-electrica-whirlpool-7mwed7120lc-p8768-28-kg-carga-frontal-color-gris/p' },
       { name: 'OrveHogar', price: 853, link: 'https://www.orvehogar.com/secadora-electrica-whirlpool-7mwed7120lc-p8768-28-kg-carga-frontal-color-gris/p' },
     ],
     msrp: null, selected: false,
     rating: { value: 4, fit: 4, overall: 4 },
-    verdict: 'BIGGEST DRYER 28KG — Le plus gros du marché. AccuDry, Wrinkle Shield, Steam. $809 Boyacá (best). Pour charges massives.',
-    notes: 'Boyacá $809. CRECOS/OrveHogar $853.',
+    verdict: 'BIGGEST DRYER 28KG — Le plus gros du marché. AccuDry, Wrinkle Shield, Steam. $853 CRECOS/OrveHogar. Pour charges massives.',
+    notes: 'CRECOS/OrveHogar $853. Boyacá OOS removed 2026-04-10.',
   },
 
   // ─── New finds Apr 2026 ───
@@ -588,12 +585,12 @@ const PRODUCTS = [
     oem: null,
     specs: ['19 kg', 'Top Load', 'Direct Drive', 'Diamond Gray'],
     stores: [
-      { name: 'Comandato', price: 477, link: 'https://www.comandato.com/lavadora-automatica-mabe-direct-drive-diamond-gray-19kg-lme9120wdgab01/p' },
+      { name: 'Comandato', price: 454, link: 'https://www.comandato.com/lavadora-automatica-mabe-direct-drive-diamond-gray-19kg-lme9120wdgab01/p' },
       // Marcimex delisted 2026-04-10
     ],
     msrp: null, selected: false,
     rating: { value: 3.5, fit: 4, overall: 3.5 },
-    verdict: 'MABE 19KG — Direct Drive at $477. Mabe = GE/Whirlpool Latin America brand. Good local support.',
+    verdict: 'MABE 19KG — Direct Drive at $454 Comandato. Mabe = GE/Whirlpool Latin America brand. Good local support.',
     notes: 'Mabe is Whirlpool subsidiary for Latin America.',
   },
   {
@@ -603,14 +600,14 @@ const PRODUCTS = [
     oem: null,
     specs: ['22 kg', 'Front Load', 'AI EcoBubble', 'Steam', 'Digital Inverter'],
     stores: [
-      { name: 'Comandato', price: 862, link: 'https://www.comandato.com/lavadora-samsung-wf22c6400ap-ap-22-kg-automatica/p' },
+      { name: 'Comandato', price: 817, link: 'https://www.comandato.com/lavadora-samsung-wf22c6400ap-ap-22-kg-automatica/p' },
       { name: 'OrveHogar', price: 869, link: 'https://www.orvehogar.com/lavadora-samsung-carga-frontal-wf22c6400ap-ap-22-kg-color-negro/p' },
       { name: 'CRECOS', price: 869, link: 'https://www.crecos.com/lavadora-samsung-carga-frontal-wf22c6400ap-ap-22-kg-color-negro/p' },
       { name: 'Marcimex', price: 879, link: 'https://www.marcimex.com/electrodomesticos-lavadora-automatica-48670/p' },
     ],
     msrp: null, selected: false,
     rating: { value: 4.5, fit: 4.5, overall: 4.5 },
-    verdict: 'FRONT LOAD 22KG — Samsung AI EcoBubble + Steam. $862 Comandato. Great alternative to the 26kg WF26DG at lower price.',
+    verdict: 'FRONT LOAD 22KG — Samsung AI EcoBubble + Steam. $817 Comandato (best). Great alternative to the 26kg WF26DG at lower price.',
     notes: 'Also in white (WF22C6400AW) at $857 Marcimex.',
   },
 
@@ -624,14 +621,14 @@ const PRODUCTS = [
     stores: [
       { name: 'Marcimex', price: 449, link: 'https://www.marcimex.com/electrodomesticos-lavadora-automatica-53495/p' },
       { name: 'OrveHogar', price: 515, link: 'https://www.orvehogar.com/lavadora-automatica-electrolux-lb20a-p8749-20-kg-carga-superior-essential-care-agitador-color-blanco/p' },
-      { name: 'Artefacta', price: 481, link: 'https://www.artefacta.com/lavadora-electrica-electrolux-superior-20kg-lb20a-957045/p' },
+      // Artefacta OOS 2026-04-13
       { name: 'CRECOS', price: 515, link: 'https://www.crecos.com/lavadora-electrolux-carga-superior-lb20a-20-kg-color-blanco/p' },
       { name: 'OrveHogar', price: 515, link: 'https://www.orvehogar.com/lavadora-electrolux-carga-superior-lb20a-20-kg-color-blanco/p' },
     ],
     msrp: null, selected: false,
     rating: { value: 4, fit: 4, overall: 4 },
     verdict: 'CHEAPEST 20KG — Electrolux Essential Care at $449 Marcimex. Agitator system, 10yr motor. No-frills but effective.',
-    notes: 'White only. Basic but reliable. Best budget option for 20kg. Marcimex $449, Artefacta $481, CRECOS/OrveHogar $515.',
+    notes: 'White only. Basic but reliable. Best budget option for 20kg. Marcimex $449, CRECOS/OrveHogar $515. Artefacta OOS.',
   },
   {
     id: 'samsung-wa26dg5500', category: 'laundry', subcategory: 'Washing Machine',
@@ -641,11 +638,11 @@ const PRODUCTS = [
     specs: ['26 kg', 'Top Load', '17 cycles', '750 rpm', '10yr motor warranty'],
     stores: [
       { name: 'Marcimex', price: 739, link: 'https://www.marcimex.com/electrodomesticos-lavadora-automatica-55131-1/p' },
-      { name: 'Artefacta', price: 659, link: 'https://www.artefacta.com/lavadora-samsung-superior-26-kg-wa26dg5500awap-154442/p' },
+      // Artefacta OOS 2026-04-13 (was $659)
     ],
     msrp: null, selected: false,
     rating: { value: 4.5, fit: 5, overall: 4.5 },
-    verdict: 'BEST VALUE 26KG TOP — Samsung 26kg at $739 Marcimex. Massive capacity for king-size bedding. 17 cycles, 10yr motor.',
+    verdict: 'BEST VALUE 26KG TOP — Samsung 26kg at $739 Marcimex. Massive capacity. Artefacta $659 deal gone (OOS).',
     notes: 'Top load = bigger capacity than front at lower price. Moitié prix du WF26DG front-load ($942).',
   },
   {
@@ -656,7 +653,7 @@ const PRODUCTS = [
     specs: ['25 kg', 'Front Load', '6 Motion DD', 'Direct Drive Inverter', '14 cycles', '10yr motor'],
     stores: [
       { name: 'Marcimex', price: 939, link: 'https://www.marcimex.com/electrodomesticos-lavadora-automatica-50392/p' },
-      { name: 'OrveHogar', price: 999, link: 'https://www.orvehogar.com/lavadora-automatica-lg-wm25wv2s6w-25-kg-carga-frontal-blanco/p' },
+      { name: 'OrveHogar', price: 939, link: 'https://www.orvehogar.com/lavadora-automatica-lg-wm25wv2s6w-25-kg-carga-frontal-blanco/p' },
     ],
     msrp: null, selected: false,
     rating: { value: 5, fit: 5, overall: 5 },
@@ -672,11 +669,11 @@ const PRODUCTS = [
     oem: null,
     specs: ['25 kg', 'Top Load', 'Smart Inverter', 'TurboDrum', '10yr motor warranty'],
     stores: [
-      { name: 'OrveHogar', price: 869, link: 'https://www.orvehogar.com/lavadora-lg-carga-superior-wt25ewtx6-25-kg-color-blanco/p' },
+      { name: 'OrveHogar', price: 859, link: 'https://www.orvehogar.com/lavadora-lg-carga-superior-wt25ewtx6-25-kg-color-blanco/p' },
     ],
     msrp: null, selected: false,
     rating: { value: 4, fit: 4.5, overall: 4 },
-    verdict: 'BIGGEST TOP-LOAD LG — 25kg at $869. Smart Inverter, TurboDrum. More capacity than WT23 ($649–709) but pricier.',
+    verdict: 'BIGGEST TOP-LOAD LG — 25kg at $859 OrveHogar. Smart Inverter, TurboDrum. More capacity than WT23 ($649–709) but pricier.',
     notes: 'Largest top-load LG available in Ecuador. Only at OrveHogar for now.',
   },
   {
@@ -718,12 +715,13 @@ const PRODUCTS = [
     oem: null,
     specs: ['22 kg', 'Electric 220V', 'Top Load', 'Xpert Dry Sensor'],
     stores: [
+      { name: 'CRECOS', price: 599, link: 'https://www.crecos.com/secadora-electrica-whirlpool-7mwed22tlrw-22kg-carga-superior--color-blanco/p' },
       { name: 'OrveHogar', price: 599, link: 'https://www.orvehogar.com/secadora-electrica-whirlpool-7mwed22tlrw-22kg-carga-superior--color-blanco/p' },
     ],
     msrp: null, selected: false,
     rating: { value: 4, fit: 4, overall: 4 },
     verdict: 'CHEAPEST 22KG DRYER — Top-load Whirlpool at $599. Xpert Dry Sensor. 220V. No-frills drying.',
-    notes: 'Top-load dryer = easier to load. Single store.',
+    notes: 'Top-load dryer = easier to load. CRECOS/OrveHogar $599.',
   },
   {
     id: 'whirlpool-7mwed26tlrw', category: 'laundry', subcategory: 'Dryer',
@@ -732,12 +730,13 @@ const PRODUCTS = [
     oem: null,
     specs: ['26 kg', 'Electric 220V', 'Top Load', 'Xpert Dry Sensor', '11 programs', 'Powder-coated steel basket'],
     stores: [
+      { name: 'CRECOS', price: 629, link: 'https://www.crecos.com/copy-of-secadora-electrica-whirlpool-7mwed26tlrw-26kg-carga-superior--color-blanco/p' },
       { name: 'OrveHogar', price: 629, link: 'https://www.orvehogar.com/copy-of-secadora-electrica-whirlpool-7mwed26tlrw-26kg-carga-superior--color-blanco/p' },
     ],
     msrp: null, selected: false,
     rating: { value: 4.5, fit: 4.5, overall: 4.5 },
-    verdict: 'BIG TOP-LOAD DRYER 26KG — $629 OrveHogar. 11 programmes, Xpert Dry Sensor. Matches a 26kg washer perfectly.',
-    notes: 'Top-load. Seul magasin pour le moment.',
+    verdict: 'BIG TOP-LOAD DRYER 26KG — $629 CRECOS/OrveHogar. 11 programmes, Xpert Dry Sensor. Matches a 26kg washer perfectly.',
+    notes: 'Top-load. CRECOS/OrveHogar $629.',
   },
   {
     id: 'whirlpool-7mwed6605mw', category: 'laundry', subcategory: 'Dryer',
@@ -747,11 +746,12 @@ const PRODUCTS = [
     specs: ['23 kg', 'Electric 220V', 'Front Load', '37 cycles', 'Xpert Dry Sensor', 'Wrinkle Shield', 'Steam Refresh', 'Sanitize', 'EcoBoost'],
     stores: [
       // Whirlpool.ec delisted 2026-04-10 (404)
+      { name: 'CRECOS', price: 860, link: 'https://www.crecos.com/secadora-electrica-whirlpool-7mwed6605mw-p8768-23kg-carga-frontal-color-blanco/p' },
       { name: 'OrveHogar', price: 860, link: 'https://www.orvehogar.com/secadora-electrica-whirlpool-7mwed6605mw-p8768-23kg-carga-frontal-color-blanco/p' },
     ],
     msrp: null, selected: false,
     rating: { value: 5, fit: 5, overall: 5 },
-    verdict: 'BEST MID-RANGE DRYER — 23kg front-load at $860 OrveHogar. 37 cycles, Steam Refresh, Sanitize, Wrinkle Shield. Complet.',
+    verdict: 'BEST MID-RANGE DRYER — 23kg front-load at $860 CRECOS/OrveHogar. 37 cycles, Steam Refresh, Sanitize, Wrinkle Shield. Complet.',
     notes: 'Also in Chrome Shadow (7MWED6605MC) at $966 OrveHogar. White is much cheaper.',
   },
   {
@@ -762,6 +762,7 @@ const PRODUCTS = [
     specs: ['25 kg', 'Electric 220V', 'Front Load', 'Inverter motor', 'TurboSteam', 'Sensor Dry', 'FlowSense', 'Smart Diagnosis', 'ThinQ WiFi'],
     stores: [
       { name: 'Marcimex', price: 859, link: 'https://www.marcimex.com/electrodomesticos-secadoras-electricas-51312/p' },
+      { name: 'CRECOS', price: 940, link: 'https://www.crecos.com/secadora-electrica-lg-df74vfxs6be-p8878-25-kg-carga-frontal-color-silver/p' },
       { name: 'OrveHogar', price: 940, link: 'https://www.orvehogar.com/secadora-electrica-lg-df74vfxs6be-p8878-25-kg-carga-frontal-color-silver/p' },
     ],
     msrp: null, selected: false,
@@ -793,7 +794,7 @@ const PRODUCTS = [
     specs: ['22 kg', 'Electric 220V', 'Front Load', 'AI Control', 'Sensor Dry', '36-month warranty'],
     stores: [
       { name: 'Marcimex', price: 789, link: 'https://www.marcimex.com/electrodomesticos-secadoras-electricas-55193-1/p' },
-      { name: 'Comandato', price: 813, link: 'https://www.comandato.com/secadora-samsung-ai-control-22kg-dve22c6370p-ap/p' },
+      { name: 'Comandato', price: 774, link: 'https://www.comandato.com/secadora-samsung-ai-control-22kg-dve22c6370p-ap/p' },
     ],
     msrp: null, selected: false,
     rating: { value: 4, fit: 4, overall: 4 },
@@ -821,6 +822,7 @@ const PRODUCTS = [
     oem: null,
     specs: ['20 kg', 'Electric 220V', 'Front Load', 'Sensor Dry', 'Reversible door', 'Smart Check', '10 programs', 'Energy A'],
     stores: [
+      { name: 'CRECOS', price: 754, link: 'https://www.crecos.com/secadora-electrica-samsung-dve20t6000w-ap-p8867-20-kg-puerta-reversible-smart-check-color-blanco/p' },
       { name: 'OrveHogar', price: 754, link: 'https://www.orvehogar.com/secadora-electrica-samsung-dve20t6000w-ap-p8867-20-kg-puerta-reversible-smart-check-color-blanco/p' },
     ],
     msrp: null, selected: false,
@@ -2355,12 +2357,12 @@ const PRODUCTS = [
     oem: 'https://comercialbenavides.net/p/Soporte-TV/soporte25953',
     specs: ['42"–110" TVs', 'Max 100 kg (220 lb)', 'VESA 200×200 to 750×500', '600×400 compatible', 'Tilt ±15°', 'Steel construction'],
     stores: [
-      { name: 'Comercial Benavides', price: 15, link: 'https://comercialbenavides.net/p/Soporte-TV/soporte25953' },
+      { name: 'Comercial Benavides', price: 15.50, link: 'https://comercialbenavides.net/p/Soporte-TV/soporte25953' },
     ],
     msrp: 19.50, selected: false,
     rating: { value: 4.5, fit: 5, overall: 4.5 },
-    verdict: 'BEST VALUE — $15 tilt mount covering 42"–110" with 100 kg capacity and VESA 600×400. Samsung QN85F 85" weighs 29.5 kg — over 3× safety margin. ±15° tilt.',
-    notes: 'EVL is a well-known Latin American mount brand. Samsung QN85F 85" = 29.5 kg without stand, VESA 600×400. 100 kg capacity = 3.4× safety margin. VESA range covers 200×200 to 750×500. Tilt ±15° for glare adjustment. Steel. List price $19.50, sale $15. Comercial Benavides is an Ecuadorian retailer.',
+    verdict: 'BEST VALUE — $15.50 tilt mount covering 42"–110" with 100 kg capacity and VESA 600×400. Samsung QN85F 85" weighs 29.5 kg — over 3× safety margin. ±15° tilt.',
+    notes: 'EVL is a well-known Latin American mount brand. Samsung QN85F 85" = 29.5 kg without stand, VESA 600×400. 100 kg capacity = 3.4× safety margin. VESA range covers 200×200 to 750×500. Tilt ±15° for glare adjustment. Steel. List price $19.50, current $15.50. Comercial Benavides.',
   },
   {
     id: 'sonya-tilt-37-90', category: 'living', subcategory: 'TV Mount',
@@ -2369,41 +2371,15 @@ const PRODUCTS = [
     oem: 'https://www.kywi.com.ec/soporte-lcd-led-plas-37-90-negro-sonya/p',
     specs: ['37"–90" TVs', 'Max 60 kg', 'VESA 600×400', 'Tilt 15°', '7 cm from wall', '43×67×8 cm'],
     stores: [
-      { name: 'Kywi', price: null, link: 'https://www.kywi.com.ec/soporte-lcd-led-plas-37-90-negro-sonya/p' },
+      { name: 'Kywi', price: 38, link: 'https://www.kywi.com.ec/soporte-lcd-led-plas-37-90-negro-sonya/p' },
     ],
     msrp: null, selected: false,
     rating: { value: 3.5, fit: 4, overall: 3.5 },
-    verdict: 'Solid Kywi option — VESA 600×400 confirmed, 60 kg (2× the QN85F 29.5 kg), 15° tilt. Price not online (~$25–40). Check in-store.',
-    notes: 'SONYA brand, available at Kywi (hardware store). VESA 600×400 confirmed. Samsung QN85F 85" = 29.5 kg, so 60 kg capacity = 2× margin. 7 cm wall gap. Price not available online — need to check in Kywi store. Dimensions 43×67×8 cm.',
+    verdict: 'Solid Kywi option — $38. VESA 600×400 confirmed, 60 kg (2× the QN85F 29.5 kg), 15° tilt.',
+    notes: 'SONYA brand, available at Kywi. VESA 600×400 confirmed. Samsung QN85F 85" = 29.5 kg, 60 kg capacity = 2× margin. 7 cm wall gap. Dimensions 43×67×8 cm.',
   },
-  {
-    id: 'radioshack-1606008', category: 'living', subcategory: 'TV Mount',
-    brand: 'RadioShack', model: '1606008 Rack Inclinable', type: 'Tilt Wall Mount', color: 'Black',
-    image: null,
-    oem: 'https://www.artefacta.com/radioshack-rack-de-tv-con-funcion-de-inclinacion-47-90-1606008',
-    specs: ['47"–90" TVs', 'Max 60 kg', 'VESA standard (to confirm)', 'Tilt'],
-    stores: [
-      { name: 'Artefacta', price: null, link: 'https://www.artefacta.com/radioshack-rack-de-tv-con-funcion-de-inclinacion-47-90-1606008' },
-    ],
-    msrp: null, selected: false,
-    rating: { value: 3, fit: 3.5, overall: 3 },
-    verdict: 'RadioShack tilt mount at Artefacta — 47"–90", 60 kg (2× QN85F). VESA range and price to confirm in-store.',
-    notes: 'Sold through Artefacta (Unicomer group). 47–90" range covers 85". Samsung QN85F = 29.5 kg, 60 kg capacity = 2× margin. VESA pattern not specified — must verify 600×400 compatibility before buying. Price not listed online.',
-  },
-  {
-    id: 'aa-tech-32-95', category: 'living', subcategory: 'TV Mount',
-    brand: 'A&A Technology', model: 'Soporte TV 32"–95"', type: 'Wall Mount', color: 'Black',
-    image: null,
-    oem: 'https://www.aki.com.ec/producto/soporte-tv-negro-aa-technology-32-a-95/',
-    specs: ['32"–95" TVs', 'Max 85 kg', 'VESA to confirm', 'Type to confirm (tilt or fixed)'],
-    stores: [
-      { name: 'AKI', price: null, link: 'https://www.aki.com.ec/producto/soporte-tv-negro-aa-technology-32-a-95/' },
-    ],
-    msrp: null, selected: false,
-    rating: { value: 3, fit: 4, overall: 3 },
-    verdict: 'AKI option — covers up to 95", 85 kg. Mount type and VESA range need in-store verification.',
-    notes: 'A&A Technology brand at AKI Ecuador. 95" max is the widest range found. 85 kg capacity excellent. Mount type (fixed vs tilt) and exact VESA pattern not confirmed online — must check in-store. AKI prices vary by location.',
-  },
+  // radioshack-1606008 removed 2026-04-10 (Artefacta page 404)
+  // aa-tech-32-95 removed 2026-04-10 (AKI page 404)
   {
     id: 'evl-evs-fx92', category: 'living', subcategory: 'TV Mount',
     brand: 'EVL', model: 'EVS-FX92', type: 'Fixed Wall Mount', color: 'Black',
@@ -2411,12 +2387,12 @@ const PRODUCTS = [
     oem: 'https://comercialbenavides.net/p/evl/soporte-tv-evl-fijo-65120-265-30778',
     specs: ['65"–120" TVs', 'Max 120 kg (265 lb)', 'VESA probable 600×400+', 'Fixed (0° tilt)', 'Heavy-duty steel'],
     stores: [
-      { name: 'Comercial Benavides', price: 22, link: 'https://comercialbenavides.net/p/evl/soporte-tv-evl-fijo-65120-265-30778' },
+      { name: 'Comercial Benavides', price: 19.50, link: 'https://comercialbenavides.net/p/evl/soporte-tv-evl-fijo-65120-265-30778' },
     ],
     msrp: null, selected: false,
     rating: { value: 3.5, fit: 4, overall: 3.5 },
-    verdict: 'Heavy-duty fixed mount — 65"–120", 120 kg (4× QN85F). $22. No tilt, flush to wall. For those who want zero movement.',
-    notes: 'EVL brand, same maker as EVS-TL65. Samsung QN85F = 29.5 kg, 120 kg capacity = 4× safety margin. Fixed mount (no tilt). VESA pattern not explicitly listed but likely supports 600×400 given the 65–120" range. ~$22 reference price. Comercial Benavides.',
+    verdict: 'Heavy-duty fixed mount — 65"–120", 120 kg (4× QN85F). $19.50. No tilt, flush to wall. For those who want zero movement.',
+    notes: 'EVL brand, same maker as EVS-TL65. Samsung QN85F = 29.5 kg, 120 kg capacity = 4× safety margin. Fixed mount (no tilt). VESA pattern not explicitly listed but likely supports 600×400 given the 65–120" range. $19.50 Comercial Benavides.',
   },
 
   // ─── Buffets / Aparadores ─────────────────────────────────────────────
@@ -2682,7 +2658,7 @@ const ADDED_DATES={
   'samsung-dve22c6370p':'2026-04-12','samsung-dve22c6370w':'2026-04-12','samsung-dve20t6000w':'2026-04-12',
   // 2026-04-12 — TV Mounts
   'evl-evs-tl65':'2026-04-12','sonya-tilt-37-90':'2026-04-12',
-  'radioshack-1606008':'2026-04-12','aa-tech-32-95':'2026-04-12','evl-evs-fx92':'2026-04-12',
+  'evl-evs-fx92':'2026-04-12',
   // 2026-04-10 — Steam mops
   // cleaning products removed 2026-04-12 (purchased)
 };
